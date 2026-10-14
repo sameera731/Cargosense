@@ -1,0 +1,101 @@
+sku_id,product_name,product_category,sub_category,unit_price,supplier_name,unit_weight_kg,unit_volume_m3,density_kg_m3,is_active
+SKU0,Shampoos & Conditioners - Formula 01,haircare,Shampoos & Conditioners,69.81,Supplier 3,0.53,0.000849,624.3,True
+SKU1,Face Creams & Serums - Formula 02,skincare,Face Creams & Serums,14.84,Supplier 3,0.25,0.000547,456.8,True
+SKU2,Shampoos & Conditioners - Formula 03,haircare,Shampoos & Conditioners,11.32,Supplier 1,0.64,0.000764,837.0,True
+SKU3,Face Creams & Serums - Formula 04,skincare,Face Creams & Serums,61.16,Supplier 5,0.3,0.000589,510.0,True
+SKU4,Face Creams & Serums - Formula 05,skincare,Face Creams & Serums,4.81,Supplier 1,0.31,0.000587,527.8,True
+SKU5,Shampoos & Conditioners - Formula 06,haircare,Shampoos & Conditioners,1.7,Supplier 4,0.54,0.000764,706.5,True
+SKU6,Face Creams & Serums - Formula 07,skincare,Face Creams & Serums,4.08,Supplier 3,0.25,0.000676,369.9,True
+SKU7,Color Cosmetics & Compacts - Formula 08,cosmetics,Color Cosmetics & Compacts,42.96,Supplier 4,0.168,0.000531,315.8,True
+SKU8,Color Cosmetics & Compacts - Formula 09,cosmetics,Color Cosmetics & Compacts,68.72,Supplier 4,0.16,0.000571,281.2,True
+SKU9,Face Creams & Serums - Formula 10,skincare,Face Creams & Serums,64.02,Supplier 2,0.336,0.000542,620.4,True
+SKU10,Body Lotions & Body Wash - Formula 11,skincare,Body Lotions & Body Wash,15.71,Supplier 5,0.787,0.00087,904.4,True
+SKU11,Face Creams & Serums - Formula 12,skincare,Face Creams & Serums,90.64,Supplier 2,0.309,0.000652,473.9,True
+SKU12,Shampoos & Conditioners - Formula 13,haircare,Shampoos & Conditioners,71.21,Supplier 4,0.603,0.00078,772.8,True
+SKU13,Body Lotions & Body Wash - Formula 14,skincare,Body Lotions & Body Wash,16.16,Supplier 5,0.746,0.001008,740.0,True
+SKU14,Body Lotions & Body Wash - Formula 15,skincare,Body Lotions & Body Wash,99.17,Supplier 1,0.736,0.000737,997.8,True
+SKU15,Body Lotions & Body Wash - Formula 16,skincare,Body Lotions & Body Wash,36.99,Supplier 1,0.69,0.000932,740.7,True
+SKU16,Body Lotions & Body Wash - Formula 17,skincare,Body Lotions & Body Wash,7.55,Supplier 1,0.826,0.000816,1011.6,True
+SKU17,Color Cosmetics & Compacts - Formula 18,cosmetics,Color Cosmetics & Compacts,81.46,Supplier 1,0.198,0.000642,309.0,True
+SKU18,Shampoos & Conditioners - Formula 19,haircare,Shampoos & Conditioners,36.44,Supplier 2,0.552,0.000637,866.8,True
+SKU19,Body Lotions & Body Wash - Formula 20,skincare,Body Lotions & Body Wash,51.12,Supplier 4,0.601,0.000942,637.7,True
+SKU20,Body Lotions & Body Wash - Formula 21,skincare,Body Lotions & Body Wash,96.34,Supplier 1,0.816,0.000724,1126.5,True
+SKU21,Color Cosmetics & Compacts - Formula 22,cosmetics,Color Cosmetics & Compacts,84.89,Supplier 5,0.18,0.000455,396.4,True
+SKU22,Shampoos & Conditioners - Formula 23,haircare,Shampoos & Conditioners,27.68,Supplier 4,0.585,0.000774,755.2,True
+SKU23,Color Cosmetics & Compacts - Formula 24,cosmetics,Color Cosmetics & Compacts,4.32,Supplier 5,0.151,0.00051,295.9,True
+SKU24,Shampoos & Conditioners - Formula 25,haircare,Shampoos & Conditioners,4.16,Supplier 2,0.564,0.000659,856.5,True
+SKU25,Shampoos & Conditioners - Formula 26,haircare,Shampoos & Conditioners,39.63,Supplier 4,0.513,0.000674,761.2,True
+SKU26,Shampoos & Conditioners - Formula 27,haircare,Shampoos & Conditioners,97.45,Supplier 2,0.645,0.000772,835.5,True
+SKU27,Color Cosmetics & Compacts - Formula 28,cosmetics,Color Cosmetics & Compacts,92.56,Supplier 5,0.224,0.000481,465.4,True
+SKU28,Color Cosmetics & Compacts - Formula 29,cosmetics,Color Cosmetics & Compacts,2.4,Supplier 1,0.14,0.000614,227.1,True
+SKU29,Color Cosmetics & Compacts - Formula 30,cosmetics,Color Cosmetics & Compacts,63.45,Supplier 1,0.186,0.000458,405.6,True
+SKU30,Shampoos & Conditioners - Formula 31,haircare,Shampoos & Conditioners,8.02,Supplier 4,0.701,0.0009,778.6,True
+SKU31,Body Lotions & Body Wash - Formula 32,skincare,Body Lotions & Body Wash,50.85,Supplier 3,0.705,0.000854,825.6,True
+SKU32,Body Lotions & Body Wash - Formula 33,skincare,Body Lotions & Body Wash,79.21,Supplier 3,0.937,0.000925,1013.0,True
+SKU33,Color Cosmetics & Compacts - Formula 34,cosmetics,Color Cosmetics & Compacts,64.8,Supplier 5,0.19,0.000672,283.3,True
+SKU34,Body Lotions & Body Wash - Formula 35,skincare,Body Lotions & Body Wash,37.47,Supplier 1,0.681,0.0007,973.5,True
+SKU35,Color Cosmetics & Compacts - Formula 36,cosmetics,Color Cosmetics & Compacts,84.96,Supplier 1,0.177,0.000607,291.0,True
+SKU36,Body Lotions & Body Wash - Formula 37,skincare,Body Lotions & Body Wash,9.81,Supplier 2,0.892,0.000854,1044.3,True
+SKU37,Body Lotions & Body Wash - Formula 38,skincare,Body Lotions & Body Wash,23.4,Supplier 3,0.742,0.000751,988.8,True
+SKU38,Color Cosmetics & Compacts - Formula 39,cosmetics,Color Cosmetics & Compacts,52.08,Supplier 5,0.217,0.00058,373.5,True
+SKU39,Body Lotions & Body Wash - Formula 40,skincare,Body Lotions & Body Wash,19.13,Supplier 2,0.725,0.000863,840.0,True
+SKU40,Body Lotions & Body Wash - Formula 41,skincare,Body Lotions & Body Wash,80.54,Supplier 1,0.807,0.000788,1023.1,True
+SKU41,Body Lotions & Body Wash - Formula 42,skincare,Body Lotions & Body Wash,99.11,Supplier 4,0.669,0.000826,809.3,True
+SKU42,Face Creams & Serums - Formula 43,skincare,Face Creams & Serums,46.53,Supplier 5,0.326,0.000547,596.5,True
+SKU43,Shampoos & Conditioners - Formula 44,haircare,Shampoos & Conditioners,11.74,Supplier 5,0.634,0.000782,810.4,True
+SKU44,Color Cosmetics & Compacts - Formula 45,cosmetics,Color Cosmetics & Compacts,51.36,Supplier 2,0.143,0.000546,261.4,True
+SKU45,Shampoos & Conditioners - Formula 46,haircare,Shampoos & Conditioners,33.78,Supplier 2,0.506,0.000711,712.2,True
+SKU46,Shampoos & Conditioners - Formula 47,haircare,Shampoos & Conditioners,27.08,Supplier 3,0.571,0.000796,717.5,True
+SKU47,Face Creams & Serums - Formula 48,skincare,Face Creams & Serums,95.71,Supplier 1,0.357,0.000649,549.9,True
+SKU48,Shampoos & Conditioners - Formula 49,haircare,Shampoos & Conditioners,76.04,Supplier 2,0.608,0.000719,845.1,True
+SKU49,Color Cosmetics & Compacts - Formula 50,cosmetics,Color Cosmetics & Compacts,78.9,Supplier 5,0.18,0.000569,316.6,True
+SKU50,Color Cosmetics & Compacts - Formula 51,cosmetics,Color Cosmetics & Compacts,14.2,Supplier 2,0.203,0.00066,307.2,True
+SKU51,Shampoos & Conditioners - Formula 52,haircare,Shampoos & Conditioners,26.7,Supplier 5,0.524,0.00078,672.5,True
+SKU52,Face Creams & Serums - Formula 53,skincare,Face Creams & Serums,98.03,Supplier 1,0.316,0.000796,397.1,True
+SKU53,Face Creams & Serums - Formula 54,skincare,Face Creams & Serums,30.34,Supplier 1,0.25,0.000643,388.6,True
+SKU54,Shampoos & Conditioners - Formula 55,haircare,Shampoos & Conditioners,31.15,Supplier 1,0.75,0.000759,988.5,True
+SKU55,Shampoos & Conditioners - Formula 56,haircare,Shampoos & Conditioners,79.86,Supplier 2,0.674,0.000762,885.0,True
+SKU56,Face Creams & Serums - Formula 57,skincare,Face Creams & Serums,20.99,Supplier 1,0.322,0.000695,463.0,True
+SKU57,Shampoos & Conditioners - Formula 58,haircare,Shampoos & Conditioners,49.26,Supplier 2,0.583,0.00078,748.1,True
+SKU58,Face Creams & Serums - Formula 59,skincare,Face Creams & Serums,59.84,Supplier 3,0.329,0.000567,580.2,True
+SKU59,Color Cosmetics & Compacts - Formula 60,cosmetics,Color Cosmetics & Compacts,63.83,Supplier 1,0.188,0.000652,288.1,True
+SKU60,Face Creams & Serums - Formula 61,skincare,Face Creams & Serums,17.03,Supplier 4,0.289,0.00052,554.9,True
+SKU61,Shampoos & Conditioners - Formula 62,haircare,Shampoos & Conditioners,52.03,Supplier 4,0.605,0.000734,824.4,True
+SKU62,Color Cosmetics & Compacts - Formula 63,cosmetics,Color Cosmetics & Compacts,72.8,Supplier 2,0.128,0.000525,243.6,True
+SKU63,Face Creams & Serums - Formula 64,skincare,Face Creams & Serums,13.02,Supplier 3,0.301,0.0006,502.4,True
+SKU64,Face Creams & Serums - Formula 65,skincare,Face Creams & Serums,89.63,Supplier 1,0.318,0.000569,558.9,True
+SKU65,Face Creams & Serums - Formula 66,skincare,Face Creams & Serums,33.7,Supplier 5,0.324,0.000686,472.0,True
+SKU66,Face Creams & Serums - Formula 67,skincare,Face Creams & Serums,26.03,Supplier 5,0.253,0.000658,384.2,True
+SKU67,Face Creams & Serums - Formula 68,skincare,Face Creams & Serums,87.76,Supplier 1,0.329,0.0005,657.9,True
+SKU68,Shampoos & Conditioners - Formula 69,haircare,Shampoos & Conditioners,37.93,Supplier 2,0.462,0.000807,572.3,True
+SKU69,Face Creams & Serums - Formula 70,skincare,Face Creams & Serums,54.87,Supplier 4,0.301,0.000639,470.7,True
+SKU70,Shampoos & Conditioners - Formula 71,haircare,Shampoos & Conditioners,47.91,Supplier 1,0.62,0.000798,776.4,True
+SKU71,Lip & Eye Makeup - Formula 72,cosmetics,Lip & Eye Makeup,6.38,Supplier 2,0.07,0.00023,303.4,True
+SKU72,Lip & Eye Makeup - Formula 73,cosmetics,Lip & Eye Makeup,90.2,Supplier 1,0.077,0.000179,430.9,True
+SKU73,Lip & Eye Makeup - Formula 74,cosmetics,Lip & Eye Makeup,83.85,Supplier 4,0.079,0.000226,350.7,True
+SKU74,Shampoos & Conditioners - Formula 75,haircare,Shampoos & Conditioners,3.17,Supplier 4,0.598,0.000671,891.9,True
+SKU75,Face Creams & Serums - Formula 76,skincare,Face Creams & Serums,93.0,Supplier 1,0.327,0.000708,461.6,True
+SKU76,Hair Oils & Styling Serums - Formula 77,haircare,Hair Oils & Styling Serums,69.11,Supplier 2,0.258,0.000453,568.9,True
+SKU77,Hair Oils & Styling Serums - Formula 78,haircare,Hair Oils & Styling Serums,57.45,Supplier 1,0.29,0.00047,617.0,True
+SKU78,Hair Oils & Styling Serums - Formula 79,haircare,Hair Oils & Styling Serums,6.31,Supplier 5,0.299,0.000446,670.6,True
+SKU79,Hair Oils & Styling Serums - Formula 80,haircare,Hair Oils & Styling Serums,57.06,Supplier 3,0.259,0.000434,596.5,True
+SKU80,Face Creams & Serums - Formula 81,skincare,Face Creams & Serums,91.13,Supplier 3,0.295,0.000552,533.9,True
+SKU81,Hair Oils & Styling Serums - Formula 82,haircare,Hair Oils & Styling Serums,72.82,Supplier 3,0.29,0.000426,681.5,True
+SKU82,Face Creams & Serums - Formula 83,skincare,Face Creams & Serums,17.03,Supplier 2,0.369,0.000617,598.5,True
+SKU83,Hair Oils & Styling Serums - Formula 84,haircare,Hair Oils & Styling Serums,68.91,Supplier 1,0.232,0.000392,591.0,True
+SKU84,Hair Oils & Styling Serums - Formula 85,haircare,Hair Oils & Styling Serums,89.1,Supplier 5,0.331,0.000412,804.6,True
+SKU85,Lip & Eye Makeup - Formula 86,cosmetics,Lip & Eye Makeup,76.96,Supplier 5,0.092,0.000229,400.6,True
+SKU86,Face Creams & Serums - Formula 87,skincare,Face Creams & Serums,20.0,Supplier 1,0.315,0.000669,470.7,True
+SKU87,Hair Oils & Styling Serums - Formula 88,haircare,Hair Oils & Styling Serums,80.41,Supplier 3,0.248,0.000362,685.6,True
+SKU88,Lip & Eye Makeup - Formula 89,cosmetics,Lip & Eye Makeup,75.27,Supplier 2,0.081,0.000106,761.8,True
+SKU89,Lip & Eye Makeup - Formula 90,cosmetics,Lip & Eye Makeup,97.76,Supplier 1,0.089,0.000208,428.3,True
+SKU90,Face Creams & Serums - Formula 91,skincare,Face Creams & Serums,13.88,Supplier 3,0.295,0.000601,491.7,True
+SKU91,Lip & Eye Makeup - Formula 92,cosmetics,Lip & Eye Makeup,62.11,Supplier 4,0.101,0.000197,513.4,True
+SKU92,Lip & Eye Makeup - Formula 93,cosmetics,Lip & Eye Makeup,47.71,Supplier 2,0.103,0.000211,489.3,True
+SKU93,Hair Oils & Styling Serums - Formula 94,haircare,Hair Oils & Styling Serums,69.29,Supplier 4,0.279,0.0003,930.6,True
+SKU94,Lip & Eye Makeup - Formula 95,cosmetics,Lip & Eye Makeup,3.04,Supplier 2,0.079,0.000143,554.6,True
+SKU95,Hair Oils & Styling Serums - Formula 96,haircare,Hair Oils & Styling Serums,77.9,Supplier 4,0.326,0.000331,984.0,True
+SKU96,Lip & Eye Makeup - Formula 97,cosmetics,Lip & Eye Makeup,24.42,Supplier 3,0.109,0.000131,828.7,True
+SKU97,Hair Oils & Styling Serums - Formula 98,haircare,Hair Oils & Styling Serums,3.53,Supplier 4,0.347,0.000413,841.2,True
+SKU98,Face Creams & Serums - Formula 99,skincare,Face Creams & Serums,19.75,Supplier 5,0.353,0.000531,665.3,True
+SKU99,Hair Oils & Styling Serums - Formula 100,haircare,Hair Oils & Styling Serums,68.52,Supplier 2,0.356,0.000371,959.2,True

@@ -1,0 +1,82 @@
+Phase 1 — Dataset Inspection and Understanding
+Tasks
+- Load both original CSV files.
+- Inspect rows, columns, data types and dimensions.
+- Check unique values, missing values, duplicates and outliers.
+- Understand numerical, categorical, discrete and continuous attributes.
+Syllabus: Unit I — Introduction to Data Science; Unit II — Data types and attributes; Unit III — Data sources, data quality and structural inspection; Unit IV — CSV analysis and Pandas DataFrames.
+Phase 2 — Data Cleaning and Exploratory Data Analysis
+Tasks
+- Handle missing values and duplicates.
+- Investigate outliers and inconsistent data.
+- Calculate descriptive statistics.
+- Analyse distributions, correlations and trends.
+- Create visualisations and perform selected hypothesis tests.
+Syllabus: Unit II — Mean, median, mode, range, quartiles, variance, standard deviation, IQR and graphical displays; Unit III — Data cleaning, outliers, EDA, hypothesis testing and transformation; Unit V — Descriptive statistics, distributions, correlations and trends; Unit VI — Matplotlib, Seaborn, histograms, bar charts, box plots, line plots and scatter plots.
+Phase 3 — Prepare the Product Dataset
+Tasks
+- Select and rename relevant product columns.
+- Create product weight, volume and warehouse attributes.
+- Prepare a cleaned DataFrame and save products.csv.
+- Generate synthetic product attributes where needed.
+Syllabus: Unit IV — NumPy arrays, indexing, slicing, categorical data, DataFrames, loc, iloc, lists and dictionaries; Unit V — Importing datasets, feature extraction and transformation.
+Phase 4 — Prepare the Truck Dataset
+Tasks
+- Select relevant truck and logistics columns.
+- Add synthetic truck capacities, current loads and dispatch information.
+- Calculate remaining capacity and utilisation.
+- Save trucks.csv.
+Syllabus: Unit II — Numeric attributes and descriptive statistics; Unit IV — NumPy, vectorisation, extending and sorting DataFrames; Unit V — Feature engineering and aggregation.
+Phase 5 — Generate Synthetic Operational Data
+Tasks
+- Generate orders and outstanding quantities.
+- Generate truck loading records.
+- Generate timestamped inventory events.
+- Check SKU references, order quantities, timestamps and truck capacity constraints.
+- Save orders.csv, truck_loads.csv and inventory_events.csv.
+Syllabus: Unit IV — Lists, dictionaries and multidimensional arrays; Unit V — Pandas grouping, aggregation, merging and concatenation.
+Phase 6 — Build the ODE Dataset
+Tasks
+- Combine the relevant DataFrames.
+- Calculate available inventory and remaining capacity.
+- Identify partially loaded trucks.
+- Generate candidate SKU combinations.
+- Define and derive the Became_FTL target from subsequent operational events.
+- Save ode_opportunities.csv.
+Syllabus: Unit III — Data transformation and encoding; Unit IV — DataFrame operations; Unit V — Feature selection, feature extraction, aggregation and merging.
+Phase 7 — Demand and Opportunity Analysis
+Tasks
+- Analyse demand forecasts and stock availability.
+- Identify demand gaps and suitable inventory.
+- Study truck utilisation and factors associated with FTL conversion.
+- Compare candidate SKU sets using Jaccard similarity.
+- Create visual summaries of the opportunities.
+Syllabus: Unit I — Statistical modelling and probability distributions; Unit II — Descriptive statistics; Unit V — EDA, correlation, trends and feature engineering; Unit VI — Data visualisation.
+Phase 8 — Machine Learning Preparation
+Tasks
+- Select suitable input features and target.
+- Separate training and testing data.
+- Handle missing values using SimpleImputer, if necessary.
+- Encode categorical columns using OneHotEncoder.
+- Scale numerical features using StandardScaler where appropriate.
+- Use ColumnTransformer to preprocess numerical and categorical features differently.
+- Combine preprocessing and model training using Pipeline.
+- Apply PCA as an optional dimensionality-reduction exercise.
+Syllabus: Unit I — Statistical modelling and overfitting; Unit III — Data encoding and transformation; Unit IV — NumPy and matrices; Unit V — Feature selection, feature extraction, scaling, train-test split and cross-validation.
+Phase 9 — Model Training and Evaluation
+Tasks
+- Train Logistic Regression, Random Forest and XGBoost classifiers.
+- Use cross-validation to compare performance.
+- Evaluate models on held-out test data.
+- Create a confusion matrix.
+- Calculate accuracy, precision and recall.
+- Examine overfitting and tune hyperparameters where useful.
+Syllabus: Unit I — Fitting a model and overfitting; Unit V — Train-test split, cross-validation, confusion matrix, accuracy, precision and recall.
+Phase 10 — Final ODE Output
+Tasks
+- Generate candidate truck-loading opportunities.
+- Estimate the probability of reaching the FTL threshold.
+- Rank and filter candidates.
+- Display truck ID, available capacity, candidate SKUs and predicted probability.
+- Explain recommendations using relevant features.
+- Summarise findings and limitations.
