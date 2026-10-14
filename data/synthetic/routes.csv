@@ -1,0 +1,11 @@
+route_id,origin_city,destination_city,distance_km,standard_transit_hours,toll_charges_mu
+RT-MUM-PUN,Mumbai,Pune,150,4.5,450.0
+RT-MUM-NSK,Mumbai,Nashik,165,4.5,380.0
+RT-MUM-SUR,Mumbai,Surat,280,6.5,620.0
+RT-MUM-BRD,Mumbai,Vadodara,410,8.5,850.0
+RT-MUM-AMD,Mumbai,Ahmedabad,530,11.0,1100.0
+RT-MUM-GOA,Mumbai,Goa,570,13.0,780.0
+RT-MUM-IND,Mumbai,Indore,585,12.5,1250.0
+RT-MUM-HYD,Mumbai,Hyderabad,710,15.0,1450.0
+RT-MUM-NAG,Mumbai,Nagpur,820,15.5,1600.0
+RT-MUM-BLR,Mumbai,Bengaluru,980,19.0,1950.0

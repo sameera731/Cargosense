@@ -1,0 +1,31 @@
+truck_id,truck_type,max_payload_kg,max_volume_m3,fuel_type,co2_emission_factor_g_km,ownership_type
+TRK-001,14ft LCV,3500.0,18.0,Diesel,420.0,Dedicated Fleet
+TRK-002,14ft LCV,3500.0,18.0,Diesel,420.0,Dedicated Fleet
+TRK-003,14ft LCV,3500.0,18.0,Diesel,420.0,Dedicated Fleet
+TRK-004,14ft LCV,3500.0,18.0,Diesel,420.0,Dedicated Fleet
+TRK-005,14ft LCV,3500.0,18.0,Diesel,420.0,Dedicated Fleet
+TRK-006,14ft LCV,3500.0,18.0,Diesel,420.0,Dedicated Fleet
+TRK-007,14ft LCV,3500.0,18.0,Diesel,420.0,Dedicated Fleet
+TRK-008,14ft LCV,3500.0,18.0,Diesel,420.0,Dedicated Fleet
+TRK-009,14ft LCV,3500.0,18.0,Diesel,420.0,Dedicated Fleet
+TRK-010,14ft LCV,3500.0,18.0,Diesel,420.0,Dedicated Fleet
+TRK-011,20ft ICV,7000.0,32.0,Diesel,680.0,Dedicated Fleet
+TRK-012,20ft ICV,7000.0,32.0,Diesel,680.0,Dedicated Fleet
+TRK-013,20ft ICV,7000.0,32.0,Diesel,680.0,Dedicated Fleet
+TRK-014,20ft ICV,7000.0,32.0,Diesel,680.0,Dedicated Fleet
+TRK-015,20ft ICV,7000.0,32.0,Diesel,680.0,Dedicated Fleet
+TRK-016,20ft ICV,7000.0,32.0,Diesel,680.0,Dedicated Fleet
+TRK-017,20ft ICV,7000.0,32.0,Diesel,680.0,Dedicated Fleet
+TRK-018,20ft ICV,7000.0,32.0,Diesel,680.0,Dedicated Fleet
+TRK-019,20ft ICV,7000.0,32.0,Diesel,680.0,Dedicated Fleet
+TRK-020,20ft ICV,7000.0,32.0,Diesel,680.0,Dedicated Fleet
+TRK-021,24ft MCV,10000.0,45.0,Diesel,890.0,Contracted Carrier
+TRK-022,24ft MCV,10000.0,45.0,Diesel,890.0,Contracted Carrier
+TRK-023,24ft MCV,10000.0,45.0,Diesel,890.0,Contracted Carrier
+TRK-024,24ft MCV,10000.0,45.0,Diesel,890.0,Contracted Carrier
+TRK-025,24ft MCV,10000.0,45.0,Diesel,890.0,Contracted Carrier
+TRK-026,24ft MCV,10000.0,45.0,Diesel,890.0,Contracted Carrier
+TRK-027,32ft HCV,16000.0,62.0,Multi-Axle Diesel,1150.0,Contracted Carrier
+TRK-028,32ft HCV,16000.0,62.0,Multi-Axle Diesel,1150.0,Contracted Carrier
+TRK-029,32ft HCV,16000.0,62.0,Multi-Axle Diesel,1150.0,Contracted Carrier
+TRK-030,32ft HCV,16000.0,62.0,Multi-Axle Diesel,1150.0,Contracted Carrier

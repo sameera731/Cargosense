@@ -1,0 +1,301 @@
+permission_id,truck_id,route_id,is_permitted,restriction_reason
+PRM-0001,TRK-001,RT-MUM-PUN,True,Within standard operational range
+PRM-0002,TRK-001,RT-MUM-NSK,True,Within standard operational range
+PRM-0003,TRK-001,RT-MUM-SUR,True,Within standard operational range
+PRM-0004,TRK-001,RT-MUM-BRD,True,Within standard operational range
+PRM-0005,TRK-001,RT-MUM-AMD,False,Exceeds vehicle class highway range limit
+PRM-0006,TRK-001,RT-MUM-GOA,False,Exceeds vehicle class highway range limit
+PRM-0007,TRK-001,RT-MUM-IND,False,Exceeds vehicle class highway range limit
+PRM-0008,TRK-001,RT-MUM-HYD,False,Exceeds vehicle class highway range limit
+PRM-0009,TRK-001,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0010,TRK-001,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0011,TRK-002,RT-MUM-PUN,True,Within standard operational range
+PRM-0012,TRK-002,RT-MUM-NSK,True,Within standard operational range
+PRM-0013,TRK-002,RT-MUM-SUR,True,Within standard operational range
+PRM-0014,TRK-002,RT-MUM-BRD,True,Within standard operational range
+PRM-0015,TRK-002,RT-MUM-AMD,False,Exceeds vehicle class highway range limit
+PRM-0016,TRK-002,RT-MUM-GOA,False,Exceeds vehicle class highway range limit
+PRM-0017,TRK-002,RT-MUM-IND,False,Exceeds vehicle class highway range limit
+PRM-0018,TRK-002,RT-MUM-HYD,False,Exceeds vehicle class highway range limit
+PRM-0019,TRK-002,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0020,TRK-002,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0021,TRK-003,RT-MUM-PUN,True,Within standard operational range
+PRM-0022,TRK-003,RT-MUM-NSK,True,Within standard operational range
+PRM-0023,TRK-003,RT-MUM-SUR,True,Within standard operational range
+PRM-0024,TRK-003,RT-MUM-BRD,True,Within standard operational range
+PRM-0025,TRK-003,RT-MUM-AMD,False,Exceeds vehicle class highway range limit
+PRM-0026,TRK-003,RT-MUM-GOA,False,Exceeds vehicle class highway range limit
+PRM-0027,TRK-003,RT-MUM-IND,False,Exceeds vehicle class highway range limit
+PRM-0028,TRK-003,RT-MUM-HYD,False,Exceeds vehicle class highway range limit
+PRM-0029,TRK-003,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0030,TRK-003,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0031,TRK-004,RT-MUM-PUN,True,Within standard operational range
+PRM-0032,TRK-004,RT-MUM-NSK,True,Within standard operational range
+PRM-0033,TRK-004,RT-MUM-SUR,True,Within standard operational range
+PRM-0034,TRK-004,RT-MUM-BRD,True,Within standard operational range
+PRM-0035,TRK-004,RT-MUM-AMD,False,Exceeds vehicle class highway range limit
+PRM-0036,TRK-004,RT-MUM-GOA,False,Exceeds vehicle class highway range limit
+PRM-0037,TRK-004,RT-MUM-IND,False,Exceeds vehicle class highway range limit
+PRM-0038,TRK-004,RT-MUM-HYD,False,Exceeds vehicle class highway range limit
+PRM-0039,TRK-004,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0040,TRK-004,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0041,TRK-005,RT-MUM-PUN,True,Within standard operational range
+PRM-0042,TRK-005,RT-MUM-NSK,True,Within standard operational range
+PRM-0043,TRK-005,RT-MUM-SUR,True,Within standard operational range
+PRM-0044,TRK-005,RT-MUM-BRD,True,Within standard operational range
+PRM-0045,TRK-005,RT-MUM-AMD,False,Exceeds vehicle class highway range limit
+PRM-0046,TRK-005,RT-MUM-GOA,False,Exceeds vehicle class highway range limit
+PRM-0047,TRK-005,RT-MUM-IND,False,Exceeds vehicle class highway range limit
+PRM-0048,TRK-005,RT-MUM-HYD,False,Exceeds vehicle class highway range limit
+PRM-0049,TRK-005,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0050,TRK-005,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0051,TRK-006,RT-MUM-PUN,True,Within standard operational range
+PRM-0052,TRK-006,RT-MUM-NSK,True,Within standard operational range
+PRM-0053,TRK-006,RT-MUM-SUR,True,Within standard operational range
+PRM-0054,TRK-006,RT-MUM-BRD,True,Within standard operational range
+PRM-0055,TRK-006,RT-MUM-AMD,False,Exceeds vehicle class highway range limit
+PRM-0056,TRK-006,RT-MUM-GOA,False,Exceeds vehicle class highway range limit
+PRM-0057,TRK-006,RT-MUM-IND,False,Exceeds vehicle class highway range limit
+PRM-0058,TRK-006,RT-MUM-HYD,False,Exceeds vehicle class highway range limit
+PRM-0059,TRK-006,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0060,TRK-006,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0061,TRK-007,RT-MUM-PUN,True,Within standard operational range
+PRM-0062,TRK-007,RT-MUM-NSK,True,Within standard operational range
+PRM-0063,TRK-007,RT-MUM-SUR,True,Within standard operational range
+PRM-0064,TRK-007,RT-MUM-BRD,True,Within standard operational range
+PRM-0065,TRK-007,RT-MUM-AMD,False,Exceeds vehicle class highway range limit
+PRM-0066,TRK-007,RT-MUM-GOA,False,Exceeds vehicle class highway range limit
+PRM-0067,TRK-007,RT-MUM-IND,False,Exceeds vehicle class highway range limit
+PRM-0068,TRK-007,RT-MUM-HYD,False,Exceeds vehicle class highway range limit
+PRM-0069,TRK-007,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0070,TRK-007,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0071,TRK-008,RT-MUM-PUN,True,Within standard operational range
+PRM-0072,TRK-008,RT-MUM-NSK,True,Within standard operational range
+PRM-0073,TRK-008,RT-MUM-SUR,True,Within standard operational range
+PRM-0074,TRK-008,RT-MUM-BRD,True,Within standard operational range
+PRM-0075,TRK-008,RT-MUM-AMD,False,Exceeds vehicle class highway range limit
+PRM-0076,TRK-008,RT-MUM-GOA,False,Exceeds vehicle class highway range limit
+PRM-0077,TRK-008,RT-MUM-IND,False,Exceeds vehicle class highway range limit
+PRM-0078,TRK-008,RT-MUM-HYD,False,Exceeds vehicle class highway range limit
+PRM-0079,TRK-008,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0080,TRK-008,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0081,TRK-009,RT-MUM-PUN,True,Within standard operational range
+PRM-0082,TRK-009,RT-MUM-NSK,True,Within standard operational range
+PRM-0083,TRK-009,RT-MUM-SUR,True,Within standard operational range
+PRM-0084,TRK-009,RT-MUM-BRD,True,Within standard operational range
+PRM-0085,TRK-009,RT-MUM-AMD,False,Exceeds vehicle class highway range limit
+PRM-0086,TRK-009,RT-MUM-GOA,False,Exceeds vehicle class highway range limit
+PRM-0087,TRK-009,RT-MUM-IND,False,Exceeds vehicle class highway range limit
+PRM-0088,TRK-009,RT-MUM-HYD,False,Exceeds vehicle class highway range limit
+PRM-0089,TRK-009,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0090,TRK-009,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0091,TRK-010,RT-MUM-PUN,True,Within standard operational range
+PRM-0092,TRK-010,RT-MUM-NSK,True,Within standard operational range
+PRM-0093,TRK-010,RT-MUM-SUR,True,Within standard operational range
+PRM-0094,TRK-010,RT-MUM-BRD,True,Within standard operational range
+PRM-0095,TRK-010,RT-MUM-AMD,False,Exceeds vehicle class highway range limit
+PRM-0096,TRK-010,RT-MUM-GOA,False,Exceeds vehicle class highway range limit
+PRM-0097,TRK-010,RT-MUM-IND,False,Exceeds vehicle class highway range limit
+PRM-0098,TRK-010,RT-MUM-HYD,False,Exceeds vehicle class highway range limit
+PRM-0099,TRK-010,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0100,TRK-010,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0101,TRK-011,RT-MUM-PUN,True,Within standard operational range
+PRM-0102,TRK-011,RT-MUM-NSK,True,Within standard operational range
+PRM-0103,TRK-011,RT-MUM-SUR,True,Within standard operational range
+PRM-0104,TRK-011,RT-MUM-BRD,True,Within standard operational range
+PRM-0105,TRK-011,RT-MUM-AMD,True,Within standard operational range
+PRM-0106,TRK-011,RT-MUM-GOA,True,Within standard operational range
+PRM-0107,TRK-011,RT-MUM-IND,True,Within standard operational range
+PRM-0108,TRK-011,RT-MUM-HYD,True,Within standard operational range
+PRM-0109,TRK-011,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0110,TRK-011,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0111,TRK-012,RT-MUM-PUN,True,Within standard operational range
+PRM-0112,TRK-012,RT-MUM-NSK,True,Within standard operational range
+PRM-0113,TRK-012,RT-MUM-SUR,True,Within standard operational range
+PRM-0114,TRK-012,RT-MUM-BRD,True,Within standard operational range
+PRM-0115,TRK-012,RT-MUM-AMD,True,Within standard operational range
+PRM-0116,TRK-012,RT-MUM-GOA,True,Within standard operational range
+PRM-0117,TRK-012,RT-MUM-IND,True,Within standard operational range
+PRM-0118,TRK-012,RT-MUM-HYD,True,Within standard operational range
+PRM-0119,TRK-012,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0120,TRK-012,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0121,TRK-013,RT-MUM-PUN,True,Within standard operational range
+PRM-0122,TRK-013,RT-MUM-NSK,True,Within standard operational range
+PRM-0123,TRK-013,RT-MUM-SUR,True,Within standard operational range
+PRM-0124,TRK-013,RT-MUM-BRD,True,Within standard operational range
+PRM-0125,TRK-013,RT-MUM-AMD,True,Within standard operational range
+PRM-0126,TRK-013,RT-MUM-GOA,True,Within standard operational range
+PRM-0127,TRK-013,RT-MUM-IND,True,Within standard operational range
+PRM-0128,TRK-013,RT-MUM-HYD,True,Within standard operational range
+PRM-0129,TRK-013,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0130,TRK-013,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0131,TRK-014,RT-MUM-PUN,True,Within standard operational range
+PRM-0132,TRK-014,RT-MUM-NSK,True,Within standard operational range
+PRM-0133,TRK-014,RT-MUM-SUR,True,Within standard operational range
+PRM-0134,TRK-014,RT-MUM-BRD,True,Within standard operational range
+PRM-0135,TRK-014,RT-MUM-AMD,True,Within standard operational range
+PRM-0136,TRK-014,RT-MUM-GOA,True,Within standard operational range
+PRM-0137,TRK-014,RT-MUM-IND,True,Within standard operational range
+PRM-0138,TRK-014,RT-MUM-HYD,True,Within standard operational range
+PRM-0139,TRK-014,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0140,TRK-014,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0141,TRK-015,RT-MUM-PUN,True,Within standard operational range
+PRM-0142,TRK-015,RT-MUM-NSK,True,Within standard operational range
+PRM-0143,TRK-015,RT-MUM-SUR,True,Within standard operational range
+PRM-0144,TRK-015,RT-MUM-BRD,True,Within standard operational range
+PRM-0145,TRK-015,RT-MUM-AMD,True,Within standard operational range
+PRM-0146,TRK-015,RT-MUM-GOA,True,Within standard operational range
+PRM-0147,TRK-015,RT-MUM-IND,True,Within standard operational range
+PRM-0148,TRK-015,RT-MUM-HYD,True,Within standard operational range
+PRM-0149,TRK-015,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0150,TRK-015,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0151,TRK-016,RT-MUM-PUN,True,Within standard operational range
+PRM-0152,TRK-016,RT-MUM-NSK,True,Within standard operational range
+PRM-0153,TRK-016,RT-MUM-SUR,True,Within standard operational range
+PRM-0154,TRK-016,RT-MUM-BRD,True,Within standard operational range
+PRM-0155,TRK-016,RT-MUM-AMD,True,Within standard operational range
+PRM-0156,TRK-016,RT-MUM-GOA,True,Within standard operational range
+PRM-0157,TRK-016,RT-MUM-IND,True,Within standard operational range
+PRM-0158,TRK-016,RT-MUM-HYD,True,Within standard operational range
+PRM-0159,TRK-016,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0160,TRK-016,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0161,TRK-017,RT-MUM-PUN,True,Within standard operational range
+PRM-0162,TRK-017,RT-MUM-NSK,True,Within standard operational range
+PRM-0163,TRK-017,RT-MUM-SUR,True,Within standard operational range
+PRM-0164,TRK-017,RT-MUM-BRD,True,Within standard operational range
+PRM-0165,TRK-017,RT-MUM-AMD,True,Within standard operational range
+PRM-0166,TRK-017,RT-MUM-GOA,True,Within standard operational range
+PRM-0167,TRK-017,RT-MUM-IND,True,Within standard operational range
+PRM-0168,TRK-017,RT-MUM-HYD,True,Within standard operational range
+PRM-0169,TRK-017,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0170,TRK-017,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0171,TRK-018,RT-MUM-PUN,True,Within standard operational range
+PRM-0172,TRK-018,RT-MUM-NSK,True,Within standard operational range
+PRM-0173,TRK-018,RT-MUM-SUR,True,Within standard operational range
+PRM-0174,TRK-018,RT-MUM-BRD,True,Within standard operational range
+PRM-0175,TRK-018,RT-MUM-AMD,True,Within standard operational range
+PRM-0176,TRK-018,RT-MUM-GOA,True,Within standard operational range
+PRM-0177,TRK-018,RT-MUM-IND,True,Within standard operational range
+PRM-0178,TRK-018,RT-MUM-HYD,True,Within standard operational range
+PRM-0179,TRK-018,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0180,TRK-018,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0181,TRK-019,RT-MUM-PUN,True,Within standard operational range
+PRM-0182,TRK-019,RT-MUM-NSK,True,Within standard operational range
+PRM-0183,TRK-019,RT-MUM-SUR,True,Within standard operational range
+PRM-0184,TRK-019,RT-MUM-BRD,True,Within standard operational range
+PRM-0185,TRK-019,RT-MUM-AMD,True,Within standard operational range
+PRM-0186,TRK-019,RT-MUM-GOA,True,Within standard operational range
+PRM-0187,TRK-019,RT-MUM-IND,True,Within standard operational range
+PRM-0188,TRK-019,RT-MUM-HYD,True,Within standard operational range
+PRM-0189,TRK-019,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0190,TRK-019,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0191,TRK-020,RT-MUM-PUN,True,Within standard operational range
+PRM-0192,TRK-020,RT-MUM-NSK,True,Within standard operational range
+PRM-0193,TRK-020,RT-MUM-SUR,True,Within standard operational range
+PRM-0194,TRK-020,RT-MUM-BRD,True,Within standard operational range
+PRM-0195,TRK-020,RT-MUM-AMD,True,Within standard operational range
+PRM-0196,TRK-020,RT-MUM-GOA,True,Within standard operational range
+PRM-0197,TRK-020,RT-MUM-IND,True,Within standard operational range
+PRM-0198,TRK-020,RT-MUM-HYD,True,Within standard operational range
+PRM-0199,TRK-020,RT-MUM-NAG,False,Exceeds vehicle class highway range limit
+PRM-0200,TRK-020,RT-MUM-BLR,False,Exceeds vehicle class highway range limit
+PRM-0201,TRK-021,RT-MUM-PUN,True,Within standard operational range
+PRM-0202,TRK-021,RT-MUM-NSK,True,Within standard operational range
+PRM-0203,TRK-021,RT-MUM-SUR,True,Within standard operational range
+PRM-0204,TRK-021,RT-MUM-BRD,True,Within standard operational range
+PRM-0205,TRK-021,RT-MUM-AMD,True,Within standard operational range
+PRM-0206,TRK-021,RT-MUM-GOA,True,Within standard operational range
+PRM-0207,TRK-021,RT-MUM-IND,True,Within standard operational range
+PRM-0208,TRK-021,RT-MUM-HYD,True,Within standard operational range
+PRM-0209,TRK-021,RT-MUM-NAG,True,Within standard operational range
+PRM-0210,TRK-021,RT-MUM-BLR,True,Within standard operational range
+PRM-0211,TRK-022,RT-MUM-PUN,True,Within standard operational range
+PRM-0212,TRK-022,RT-MUM-NSK,True,Within standard operational range
+PRM-0213,TRK-022,RT-MUM-SUR,True,Within standard operational range
+PRM-0214,TRK-022,RT-MUM-BRD,True,Within standard operational range
+PRM-0215,TRK-022,RT-MUM-AMD,True,Within standard operational range
+PRM-0216,TRK-022,RT-MUM-GOA,True,Within standard operational range
+PRM-0217,TRK-022,RT-MUM-IND,True,Within standard operational range
+PRM-0218,TRK-022,RT-MUM-HYD,True,Within standard operational range
+PRM-0219,TRK-022,RT-MUM-NAG,True,Within standard operational range
+PRM-0220,TRK-022,RT-MUM-BLR,True,Within standard operational range
+PRM-0221,TRK-023,RT-MUM-PUN,True,Within standard operational range
+PRM-0222,TRK-023,RT-MUM-NSK,True,Within standard operational range
+PRM-0223,TRK-023,RT-MUM-SUR,True,Within standard operational range
+PRM-0224,TRK-023,RT-MUM-BRD,True,Within standard operational range
+PRM-0225,TRK-023,RT-MUM-AMD,True,Within standard operational range
+PRM-0226,TRK-023,RT-MUM-GOA,True,Within standard operational range
+PRM-0227,TRK-023,RT-MUM-IND,True,Within standard operational range
+PRM-0228,TRK-023,RT-MUM-HYD,True,Within standard operational range
+PRM-0229,TRK-023,RT-MUM-NAG,True,Within standard operational range
+PRM-0230,TRK-023,RT-MUM-BLR,True,Within standard operational range
+PRM-0231,TRK-024,RT-MUM-PUN,True,Within standard operational range
+PRM-0232,TRK-024,RT-MUM-NSK,True,Within standard operational range
+PRM-0233,TRK-024,RT-MUM-SUR,True,Within standard operational range
+PRM-0234,TRK-024,RT-MUM-BRD,True,Within standard operational range
+PRM-0235,TRK-024,RT-MUM-AMD,True,Within standard operational range
+PRM-0236,TRK-024,RT-MUM-GOA,True,Within standard operational range
+PRM-0237,TRK-024,RT-MUM-IND,True,Within standard operational range
+PRM-0238,TRK-024,RT-MUM-HYD,True,Within standard operational range
+PRM-0239,TRK-024,RT-MUM-NAG,True,Within standard operational range
+PRM-0240,TRK-024,RT-MUM-BLR,True,Within standard operational range
+PRM-0241,TRK-025,RT-MUM-PUN,True,Within standard operational range
+PRM-0242,TRK-025,RT-MUM-NSK,True,Within standard operational range
+PRM-0243,TRK-025,RT-MUM-SUR,True,Within standard operational range
+PRM-0244,TRK-025,RT-MUM-BRD,True,Within standard operational range
+PRM-0245,TRK-025,RT-MUM-AMD,True,Within standard operational range
+PRM-0246,TRK-025,RT-MUM-GOA,True,Within standard operational range
+PRM-0247,TRK-025,RT-MUM-IND,True,Within standard operational range
+PRM-0248,TRK-025,RT-MUM-HYD,True,Within standard operational range
+PRM-0249,TRK-025,RT-MUM-NAG,True,Within standard operational range
+PRM-0250,TRK-025,RT-MUM-BLR,True,Within standard operational range
+PRM-0251,TRK-026,RT-MUM-PUN,True,Within standard operational range
+PRM-0252,TRK-026,RT-MUM-NSK,True,Within standard operational range
+PRM-0253,TRK-026,RT-MUM-SUR,True,Within standard operational range
+PRM-0254,TRK-026,RT-MUM-BRD,True,Within standard operational range
+PRM-0255,TRK-026,RT-MUM-AMD,True,Within standard operational range
+PRM-0256,TRK-026,RT-MUM-GOA,True,Within standard operational range
+PRM-0257,TRK-026,RT-MUM-IND,True,Within standard operational range
+PRM-0258,TRK-026,RT-MUM-HYD,True,Within standard operational range
+PRM-0259,TRK-026,RT-MUM-NAG,True,Within standard operational range
+PRM-0260,TRK-026,RT-MUM-BLR,True,Within standard operational range
+PRM-0261,TRK-027,RT-MUM-PUN,True,Within standard operational range
+PRM-0262,TRK-027,RT-MUM-NSK,True,Within standard operational range
+PRM-0263,TRK-027,RT-MUM-SUR,True,Within standard operational range
+PRM-0264,TRK-027,RT-MUM-BRD,True,Within standard operational range
+PRM-0265,TRK-027,RT-MUM-AMD,True,Within standard operational range
+PRM-0266,TRK-027,RT-MUM-GOA,True,Within standard operational range
+PRM-0267,TRK-027,RT-MUM-IND,True,Within standard operational range
+PRM-0268,TRK-027,RT-MUM-HYD,True,Within standard operational range
+PRM-0269,TRK-027,RT-MUM-NAG,True,Within standard operational range
+PRM-0270,TRK-027,RT-MUM-BLR,True,Within standard operational range
+PRM-0271,TRK-028,RT-MUM-PUN,True,Within standard operational range
+PRM-0272,TRK-028,RT-MUM-NSK,True,Within standard operational range
+PRM-0273,TRK-028,RT-MUM-SUR,True,Within standard operational range
+PRM-0274,TRK-028,RT-MUM-BRD,True,Within standard operational range
+PRM-0275,TRK-028,RT-MUM-AMD,True,Within standard operational range
+PRM-0276,TRK-028,RT-MUM-GOA,True,Within standard operational range
+PRM-0277,TRK-028,RT-MUM-IND,True,Within standard operational range
+PRM-0278,TRK-028,RT-MUM-HYD,True,Within standard operational range
+PRM-0279,TRK-028,RT-MUM-NAG,True,Within standard operational range
+PRM-0280,TRK-028,RT-MUM-BLR,True,Within standard operational range
+PRM-0281,TRK-029,RT-MUM-PUN,True,Within standard operational range
+PRM-0282,TRK-029,RT-MUM-NSK,True,Within standard operational range
+PRM-0283,TRK-029,RT-MUM-SUR,True,Within standard operational range
+PRM-0284,TRK-029,RT-MUM-BRD,True,Within standard operational range
+PRM-0285,TRK-029,RT-MUM-AMD,True,Within standard operational range
+PRM-0286,TRK-029,RT-MUM-GOA,True,Within standard operational range
+PRM-0287,TRK-029,RT-MUM-IND,True,Within standard operational range
+PRM-0288,TRK-029,RT-MUM-HYD,True,Within standard operational range
+PRM-0289,TRK-029,RT-MUM-NAG,True,Within standard operational range
+PRM-0290,TRK-029,RT-MUM-BLR,True,Within standard operational range
+PRM-0291,TRK-030,RT-MUM-PUN,True,Within standard operational range
+PRM-0292,TRK-030,RT-MUM-NSK,True,Within standard operational range
+PRM-0293,TRK-030,RT-MUM-SUR,True,Within standard operational range
+PRM-0294,TRK-030,RT-MUM-BRD,True,Within standard operational range
+PRM-0295,TRK-030,RT-MUM-AMD,True,Within standard operational range
+PRM-0296,TRK-030,RT-MUM-GOA,True,Within standard operational range
+PRM-0297,TRK-030,RT-MUM-IND,True,Within standard operational range
+PRM-0298,TRK-030,RT-MUM-HYD,True,Within standard operational range
+PRM-0299,TRK-030,RT-MUM-NAG,True,Within standard operational range
+PRM-0300,TRK-030,RT-MUM-BLR,True,Within standard operational range
