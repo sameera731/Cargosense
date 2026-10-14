@@ -1,0 +1,101 @@
+sku,product_type,unit_price,stock_level,order_quantity_baseline,lead_time_days,manufacturing_cost,shipping_cost_baseline,supplier_name,origin_location,warehouse_id,warehouse_facility,warehouse_region,transportation_mode,assigned_route,inspection_status,defect_rate_pct,unit_weight_kg,unit_volume_m3,density_kg_m3,is_road_eligible,is_consolidation_candidate
+SKU0,haircare,69.81,58,96,7,46.28,2.96,Supplier 3,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Road,Route B,Pending,0.23,0.53,0.000983,539.2,True,False
+SKU1,skincare,14.84,53,37,30,33.62,9.72,Supplier 3,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Road,Route B,Pending,4.85,0.276,0.000622,443.7,True,False
+SKU2,haircare,11.32,1,88,10,30.69,8.05,Supplier 1,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Air,Route C,Pending,4.58,0.486,0.000972,500.0,False,False
+SKU3,skincare,61.16,23,59,13,35.62,1.73,Supplier 5,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Rail,Route A,Fail,4.75,0.313,0.000561,557.9,False,False
+SKU4,skincare,4.81,5,56,3,92.07,3.89,Supplier 1,Delhi,WH-DEL-01,Kundli Northern Hub,North,Air,Route A,Fail,3.15,0.231,0.000543,425.4,False,False
+SKU5,haircare,1.7,90,66,27,56.77,4.44,Supplier 4,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Road,Route A,Fail,2.78,0.472,0.000944,500.0,True,False
+SKU6,skincare,4.08,11,58,15,1.09,3.88,Supplier 3,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Sea,Route A,Pending,1.0,0.26,0.000347,749.3,False,False
+SKU7,cosmetics,42.96,93,11,17,99.47,2.35,Supplier 4,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Road,Route C,Fail,0.4,0.077,0.000222,346.8,True,False
+SKU8,cosmetics,68.72,5,15,10,11.42,3.4,Supplier 4,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Sea,Route B,Pending,2.71,0.095,0.000266,357.1,False,False
+SKU9,skincare,64.02,14,83,27,47.96,7.17,Supplier 2,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Rail,Route B,Pending,3.84,0.214,0.000387,553.0,False,False
+SKU10,skincare,15.71,51,80,13,96.53,8.67,Supplier 5,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Road,Route B,Pass,1.73,0.309,0.000482,641.1,True,True
+SKU11,skincare,90.64,46,60,23,27.59,4.52,Supplier 2,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Air,Route A,Pending,0.02,0.253,0.000386,655.4,False,False
+SKU12,haircare,71.21,100,85,30,32.32,1.33,Supplier 4,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Road,Route B,Fail,2.16,0.467,0.001013,461.0,True,False
+SKU13,skincare,16.16,80,48,8,97.83,9.54,Supplier 5,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Road,Route B,Pending,1.63,0.204,0.00053,384.9,True,False
+SKU14,skincare,99.17,54,78,29,5.79,2.04,Supplier 1,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Air,Route B,Pending,0.1,0.226,0.000477,473.8,False,False
+SKU15,skincare,36.99,9,69,8,97.12,2.42,Supplier 1,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Sea,Route B,Pass,2.26,0.226,0.000648,348.8,False,False
+SKU16,skincare,7.55,2,78,5,77.11,4.19,Supplier 1,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Air,Route A,Pass,1.01,0.249,0.000415,600.0,False,False
+SKU17,cosmetics,81.46,45,85,17,47.68,3.59,Supplier 1,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Air,Route C,Fail,0.1,0.141,0.000189,746.0,False,False
+SKU18,haircare,36.44,10,46,10,27.11,4.34,Supplier 2,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Sea,Route A,Pending,2.23,0.513,0.000765,670.6,False,False
+SKU19,skincare,51.12,48,94,11,82.37,4.74,Supplier 4,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Road,Route C,Fail,3.65,0.197,0.000516,381.8,True,False
+SKU20,skincare,96.34,27,68,12,65.69,8.88,Supplier 1,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Air,Route B,Pass,4.23,0.28,0.000514,544.7,False,False
+SKU21,cosmetics,84.89,69,7,25,61.74,6.04,Supplier 5,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Air,Route C,Pending,0.02,0.117,0.000235,497.9,False,False
+SKU22,haircare,27.68,71,63,1,50.12,9.57,Supplier 4,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Rail,Route C,Fail,2.59,0.411,0.000914,449.7,False,False
+SKU23,cosmetics,4.32,84,29,5,98.61,2.92,Supplier 5,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Rail,Route A,Pending,1.34,0.108,0.000303,356.4,False,False
+SKU24,haircare,4.16,4,2,26,40.38,9.74,Supplier 2,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Air,Route A,Pending,3.69,0.521,0.000788,661.2,False,False
+SKU25,haircare,39.63,82,52,11,78.28,2.23,Supplier 4,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Road,Route B,Pending,3.8,0.519,0.000954,544.0,True,False
+SKU26,haircare,97.45,59,48,16,15.97,6.51,Supplier 2,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Rail,Route A,Pass,2.12,0.459,0.001073,427.8,False,False
+SKU27,cosmetics,92.56,47,62,9,10.53,7.41,Supplier 5,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Sea,Route B,Fail,2.86,0.146,0.000297,491.6,False,False
+SKU28,cosmetics,2.4,48,24,15,59.43,9.9,Supplier 1,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Air,Route A,Fail,0.82,0.099,0.000235,421.3,False,False
+SKU29,cosmetics,63.45,45,67,5,39.29,8.1,Supplier 1,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Road,Route B,Pass,3.88,0.128,0.000299,428.1,True,True
+SKU30,haircare,8.02,60,35,26,51.63,8.95,Supplier 4,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Road,Route C,Pending,0.97,0.471,0.000978,481.6,True,False
+SKU31,skincare,50.85,6,44,17,60.25,2.68,Supplier 3,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Rail,Route C,Pending,2.99,0.206,0.000404,509.9,False,False
+SKU32,skincare,79.21,89,64,13,29.69,6.6,Supplier 3,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Road,Route A,Pass,1.95,0.283,0.000608,465.5,True,True
+SKU33,cosmetics,64.8,4,95,17,23.85,4.86,Supplier 5,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Sea,Route A,Fail,3.54,0.118,0.0003,393.3,False,False
+SKU34,skincare,37.47,1,21,26,10.75,1.02,Supplier 1,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Road,Route B,Pass,0.65,0.264,0.000448,589.3,True,True
+SKU35,cosmetics,84.96,42,85,27,58.0,5.29,Supplier 1,Delhi,WH-DEL-01,Kundli Northern Hub,North,Sea,Route C,Pass,0.54,0.129,0.000327,394.5,False,False
+SKU36,skincare,9.81,18,28,23,45.53,2.11,Supplier 2,Delhi,WH-DEL-01,Kundli Northern Hub,North,Air,Route C,Fail,3.81,0.249,0.000625,398.4,False,False
+SKU37,skincare,23.4,25,21,8,34.34,1.53,Supplier 3,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Sea,Route A,Pending,2.61,0.15,0.000566,265.0,False,False
+SKU38,cosmetics,52.08,69,88,1,5.93,9.24,Supplier 5,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Air,Route B,Pending,0.61,0.122,0.000235,519.1,False,False
+SKU39,skincare,19.13,78,34,29,9.01,5.56,Supplier 2,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Air,Route B,Fail,1.45,0.254,0.000341,744.9,False,False
+SKU40,skincare,80.54,90,39,20,88.18,7.23,Supplier 1,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Road,Route A,Pending,4.21,0.241,0.000529,455.6,True,False
+SKU41,skincare,99.11,64,38,19,95.33,5.77,Supplier 4,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Sea,Route A,Fail,0.05,0.309,0.000459,673.2,False,False
+SKU42,skincare,46.53,22,57,27,96.42,7.53,Supplier 5,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Road,Route A,Fail,4.94,0.218,0.00046,473.9,True,False
+SKU43,haircare,11.74,36,85,29,26.28,3.69,Supplier 5,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Air,Route A,Pending,0.37,0.555,0.001039,534.2,False,False
+SKU44,cosmetics,51.36,13,72,19,22.55,7.58,Supplier 2,Delhi,WH-DEL-01,Kundli Northern Hub,North,Rail,Route A,Fail,2.96,0.107,0.000276,387.7,False,False
+SKU45,haircare,33.78,93,52,7,66.31,5.22,Supplier 2,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Rail,Route A,Pass,3.22,0.506,0.001116,453.4,False,False
+SKU46,haircare,27.08,92,6,29,77.32,4.07,Supplier 3,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Road,Route B,Pending,3.65,0.458,0.000961,476.6,True,False
+SKU47,skincare,95.71,4,51,15,19.71,8.98,Supplier 1,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Rail,Route A,Pending,0.38,0.234,0.000383,611.0,False,False
+SKU48,haircare,76.04,30,9,16,23.13,7.1,Supplier 2,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Rail,Route B,Fail,1.7,0.518,0.001031,502.4,False,False
+SKU49,cosmetics,78.9,97,9,24,14.15,2.51,Supplier 5,Delhi,WH-DEL-01,Kundli Northern Hub,North,Rail,Route A,Pass,2.83,0.12,0.000238,504.2,False,False
+SKU50,cosmetics,14.2,31,82,23,45.18,6.25,Supplier 2,Delhi,WH-DEL-01,Kundli Northern Hub,North,Rail,Route B,Fail,4.75,0.085,0.000229,371.2,False,False
+SKU51,haircare,26.7,100,52,4,14.19,4.78,Supplier 5,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Road,Route A,Pending,1.77,0.479,0.000904,529.9,True,False
+SKU52,skincare,98.03,64,11,11,9.17,8.63,Supplier 1,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Air,Route C,Pending,2.12,0.244,0.000532,458.6,False,False
+SKU53,skincare,30.34,96,54,25,83.34,1.01,Supplier 1,Delhi,WH-DEL-01,Kundli Northern Hub,North,Air,Route B,Pending,1.41,0.325,0.000514,632.3,False,False
+SKU54,haircare,31.15,33,61,22,30.19,4.31,Supplier 1,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Road,Route B,Pass,2.48,0.515,0.000991,519.7,True,True
+SKU55,haircare,79.86,97,11,11,30.32,5.01,Supplier 2,Delhi,WH-DEL-01,Kundli Northern Hub,North,Sea,Route B,Fail,4.55,0.385,0.000997,386.2,False,False
+SKU56,skincare,20.99,25,83,23,12.84,1.77,Supplier 1,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Air,Route B,Pass,1.17,0.252,0.000697,361.5,False,False
+SKU57,haircare,49.26,5,51,18,67.78,9.16,Supplier 2,Delhi,WH-DEL-01,Kundli Northern Hub,North,Rail,Route A,Pending,2.51,0.488,0.001036,471.0,False,False
+SKU58,skincare,59.84,10,44,5,65.05,4.94,Supplier 3,Delhi,WH-DEL-01,Kundli Northern Hub,North,Road,Route B,Fail,1.73,0.249,0.000407,611.8,True,False
+SKU59,cosmetics,63.83,100,26,16,1.9,7.29,Supplier 1,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Air,Route A,Fail,0.45,0.149,0.000288,517.4,False,False
+SKU60,skincare,17.03,41,72,27,87.21,4.38,Supplier 4,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Rail,Route A,Fail,2.85,0.282,0.000427,660.4,False,False
+SKU61,haircare,52.03,32,36,23,78.7,9.03,Supplier 4,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Air,Route A,Fail,4.37,0.584,0.000832,701.9,False,False
+SKU62,cosmetics,72.8,86,40,2,21.05,7.29,Supplier 2,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Sea,Route C,Pass,1.87,0.135,0.00036,375.0,False,False
+SKU63,skincare,13.02,54,10,19,20.08,2.46,Supplier 3,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Sea,Route A,Pending,3.63,0.21,0.000455,461.5,False,False
+SKU64,skincare,89.63,73,75,27,8.69,4.59,Supplier 1,Delhi,WH-DEL-01,Kundli Northern Hub,North,Air,Route C,Fail,0.16,0.254,0.00046,552.2,False,False
+SKU65,skincare,33.7,57,54,24,1.6,6.58,Supplier 5,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Rail,Route C,Fail,4.91,0.188,0.000505,372.3,False,False
+SKU66,skincare,26.03,13,19,17,42.08,2.22,Supplier 5,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Road,Route A,Fail,3.45,0.208,0.000538,386.6,True,False
+SKU67,skincare,87.76,12,71,9,7.06,9.15,Supplier 1,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Sea,Route C,Pass,0.13,0.213,0.000624,341.3,False,False
+SKU68,haircare,37.93,0,58,8,97.11,1.19,Supplier 2,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Rail,Route A,Fail,1.98,0.453,0.000961,471.4,False,False
+SKU69,skincare,54.87,95,27,1,77.63,9.71,Supplier 4,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Air,Route A,Pending,1.36,0.283,0.000402,704.0,False,False
+SKU70,haircare,47.91,10,22,12,11.44,6.32,Supplier 1,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Road,Route C,Pass,1.83,0.514,0.001157,444.3,True,True
+SKU71,cosmetics,6.38,76,26,2,30.66,9.23,Supplier 2,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Road,Route A,Pending,2.08,0.08,0.000259,308.9,True,False
+SKU72,cosmetics,90.2,57,77,29,55.76,6.6,Supplier 1,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Rail,Route B,Pending,3.21,0.126,0.000289,436.0,False,False
+SKU73,cosmetics,83.85,17,66,25,46.87,1.51,Supplier 4,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Road,Route A,Fail,4.62,0.089,0.000184,483.7,True,False
+SKU74,haircare,3.17,41,1,6,80.58,5.24,Supplier 4,Delhi,WH-DEL-01,Kundli Northern Hub,North,Rail,Route A,Fail,0.4,0.531,0.001036,512.5,False,False
+SKU75,skincare,93.0,16,56,20,48.06,2.47,Supplier 1,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Air,Route C,Pass,2.03,0.26,0.000528,492.4,False,False
+SKU76,haircare,69.11,38,22,1,64.32,7.05,Supplier 2,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Rail,Route A,Pending,2.18,0.459,0.001028,446.5,False,False
+SKU77,haircare,57.45,96,57,28,42.95,6.78,Supplier 1,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Road,Route B,Pass,3.06,0.518,0.000914,566.7,True,True
+SKU78,haircare,6.31,5,51,4,71.13,8.47,Supplier 5,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Sea,Route C,Pending,4.1,0.612,0.001057,579.0,False,False
+SKU79,haircare,57.06,31,20,25,57.87,6.5,Supplier 3,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Air,Route C,Pending,0.17,0.429,0.001079,397.6,False,False
+SKU80,skincare,91.13,39,41,14,76.96,2.83,Supplier 3,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Sea,Route B,Fail,2.85,0.211,0.000563,374.8,False,False
+SKU81,haircare,72.82,48,8,6,19.79,4.07,Supplier 3,Delhi,WH-DEL-01,Kundli Northern Hub,North,Rail,Route B,Pending,2.55,0.57,0.000902,631.9,False,False
+SKU82,skincare,17.03,42,72,19,4.47,4.71,Supplier 2,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Road,Route C,Pending,4.14,0.289,0.000533,542.2,True,False
+SKU83,haircare,68.91,65,7,24,97.73,4.95,Supplier 1,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Road,Route A,Fail,0.77,0.549,0.001228,447.1,True,False
+SKU84,haircare,89.1,73,80,26,33.81,8.38,Supplier 5,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Air,Route B,Pass,4.84,0.485,0.00091,533.0,False,False
+SKU85,cosmetics,76.96,15,66,18,69.93,8.25,Supplier 5,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Road,Route B,Fail,1.37,0.098,0.000209,468.9,True,False
+SKU86,skincare,20.0,32,22,14,74.61,1.45,Supplier 1,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Rail,Route A,Pass,2.05,0.247,0.000527,468.7,False,False
+SKU87,haircare,80.41,5,55,7,28.7,6.58,Supplier 3,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Sea,Route B,Fail,3.69,0.517,0.001099,470.4,False,False
+SKU88,cosmetics,75.27,60,85,18,68.18,3.8,Supplier 2,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Sea,Route A,Pending,0.72,0.12,0.000323,371.5,False,False
+SKU89,cosmetics,97.76,90,27,1,46.6,9.93,Supplier 1,Kolkata,WH-KOL-01,Dankuni Eastern Hub,East,Rail,Route B,Pending,1.91,0.113,0.000386,292.7,False,False
+SKU90,skincare,13.88,66,96,18,85.68,7.67,Supplier 3,Bangalore,WH-BLR-01,Nelamangala Central South Hub,South-Central,Rail,Route B,Pass,1.22,0.275,0.000431,638.1,False,False
+SKU91,cosmetics,62.11,98,85,22,39.77,7.47,Supplier 4,Delhi,WH-DEL-01,Kundli Northern Hub,North,Rail,Route B,Pending,0.63,0.093,0.000274,339.4,False,False
+SKU92,cosmetics,47.71,90,10,25,62.61,4.47,Supplier 2,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Rail,Route B,Pass,0.33,0.114,0.000286,398.6,False,False
+SKU93,haircare,69.29,63,66,17,35.63,7.01,Supplier 4,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Air,Route A,Fail,4.17,0.528,0.000991,532.8,False,False
+SKU94,cosmetics,3.04,77,72,26,60.39,6.94,Supplier 2,Delhi,WH-DEL-01,Kundli Northern Hub,North,Rail,Route B,Pass,1.46,0.099,0.000174,569.0,False,False
+SKU95,haircare,77.9,15,26,14,58.89,8.63,Supplier 4,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Air,Route A,Pending,1.21,0.473,0.001103,428.8,False,False
+SKU96,cosmetics,24.42,67,32,2,17.8,5.35,Supplier 3,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Road,Route A,Pending,3.87,0.125,0.000188,664.9,True,False
+SKU97,haircare,3.53,46,4,19,65.77,7.9,Supplier 4,Mumbai,WH-MUM-01,Bhiwandi Western Hub,West,Road,Route A,Fail,3.38,0.51,0.001046,487.6,True,False
+SKU98,skincare,19.75,53,27,1,5.6,1.41,Supplier 5,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Rail,Route A,Pending,2.91,0.215,0.000512,419.9,False,False
+SKU99,haircare,68.52,55,59,8,38.07,1.31,Supplier 2,Chennai,WH-MAA-01,Sriperumbudur Coastal South Hub,South-Coast,Rail,Route B,Fail,0.35,0.503,0.000863,582.9,False,False
