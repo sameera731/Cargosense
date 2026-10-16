@@ -1,0 +1,134 @@
+# Phase 6 — Build the Opportunity Detection Engine (ODE) Dataset
+
+Responsibility: Member 2 — Primary owner
+
+Support: Sameera (Member 1) — review dataset logic, feature definitions, and validation.
+
+## Objective
+
+Transform the synthetic operational data generated in Phase 5 into a consolidated dataset of feasible PTL-to-FTL opportunities. Each row should represent a candidate opportunity consisting of a partially loaded truck and a proposed combination of additional SKUs and quantities.
+
+## Work to be done
+
+### 1. Load and understand the operational data
+
+- Load the relevant CSV files generated in Phase 5.
+- Inspect schemas, data types, primary keys, foreign keys, and relationships.
+- Identify the tables required for products, inventory, orders, trucks, routes, shipments/loading, planning runs, and historical demand.
+- Select the relevant columns and document how the tables relate to one another.
+
+### 2. Integrate the data
+
+- Merge relevant DataFrames using the correct identifiers.
+- Associate each opportunity with its truck, route, planning timestamp, inventory state, and eligible orders.
+- Prevent duplicate rows and unintended multiplication of quantities during joins.
+- Preserve the relationship between each opportunity and its underlying planning run.
+
+### 3. Calculate truck capacity and utilization
+
+For each truck at the relevant planning timestamp, calculate:
+
+- Maximum payload capacity in kilograms.
+- Current loaded weight.
+- Remaining weight capacity.
+- Maximum volume capacity.
+- Current loaded volume.
+- Remaining volume capacity.
+- Weight utilization percentage.
+- Volume utilization percentage.
+
+Identify partially loaded trucks with remaining capacity. A truck must be evaluated using both weight and volume constraints.
+
+### 4. Calculate inventory and demand availability
+
+- Determine available inventory for each relevant SKU at the planning timestamp.
+- Identify eligible open orders and their remaining quantities.
+- Match inventory to demand for compatible destinations and routes.
+- Calculate the maximum feasible quantity of each SKU that could be added to a truck.
+- Ensure that proposed quantities do not exceed either available inventory or eligible open order quantities.
+
+Use the operational quantities and event history consistently. Do not introduce cancellation logic.
+
+### 5. Generate candidate SKU combinations
+
+This is one of the most important tasks in Phase 6.
+
+Develop a candidate-generation algorithm that proposes additional cargo for partially loaded trucks.
+
+For example, the algorithm might generate:
+
+- Candidate A: SKU-101 × 100 units + SKU-105 × 50 units.
+- Candidate B: SKU-103 × 80 units.
+- Candidate C: SKU-108 × 40 units + SKU-110 × 30 units.
+
+These are illustrative examples only.
+
+The algorithm should:
+
+1. Find SKUs with available inventory and compatible outstanding demand.
+2. Check whether each SKU can be transported on the truck's route.
+3. Calculate feasible quantities using unit weight and unit volume.
+4. Generate individual-SKU or multi-SKU combinations.
+5. Reject combinations that exceed remaining weight or volume capacity.
+6. Avoid combinations that allocate the same stock or order quantity inconsistently across competing candidates.
+7. Record the proposed SKUs, quantities, and resulting truck utilization for each candidate.
+
+Candidate generation should use a documented rule-based or search-based method. It does not need to use machine learning; the ML models will score the generated candidates in Phase 9.
+
+### 6. Construct the target variable: `Became_FTL`
+
+- Define what constitutes an FTL outcome for a candidate.
+- Establish the prediction timestamp and the subsequent observation window.
+- Use subsequent operational events to determine whether the candidate's outcome satisfies the FTL definition.
+- Assign `Became_FTL = 1` to qualifying positive outcomes and `Became_FTL = 0` to qualifying negative outcomes.
+- Document how unresolved or insufficiently observed cases are handled rather than automatically labelling them negative.
+
+The target must reflect the defined operational outcome. Future events may be used to construct the target, but must not be included as input features.
+
+### 7. Create the ODE dataset
+
+Create a consolidated dataset with one row per candidate opportunity, using a unique candidate ID.
+
+Include relevant fields such as:
+
+- Candidate ID and planning-run ID.
+- Planning timestamp.
+- Truck ID and truck class.
+- Route and destination.
+- Candidate SKU IDs and proposed quantities.
+- Current and remaining truck weight capacity.
+- Current and remaining truck volume capacity.
+- Relevant inventory and open-demand features.
+- Candidate added weight and volume.
+- Projected weight and volume utilization.
+- Feasibility indicators.
+- `Became_FTL` target.
+
+The dataset may also contain additional features needed for Phase 8. Document the schema and the meaning of each field.
+
+### 8. Validate the dataset
+
+Perform checks for:
+
+- Duplicate candidate IDs and unintended duplicate opportunities.
+- Missing or invalid references.
+- Negative inventory or capacity values.
+- Proposed quantities exceeding eligible inventory or order quantities.
+- Weight or volume capacity violations.
+- Route and destination incompatibilities.
+- Incorrect target labels or target leakage.
+- Duplicate allocation of inventory across candidates when constructing a single operational recommendation.
+- Class balance of `Became_FTL`.
+- Whether the target can be determined within the observation window.
+
+### Deliverables
+
+- `data/processed/ode_opportunities.csv`
+- Candidate-generation and dataset-construction notebook or scripts.
+- A documented feature dictionary and dataset schema.
+- Target-definition documentation for `Became_FTL`.
+- A Phase 6 validation report.
+
+## Expected outcome
+
+At the end of Phase 6, CargoSense should have a dataset where each row represents a proposed PTL-to-FTL opportunity for a specific truck and additional cargo combination. This dataset becomes the input for Phase 7 analysis, Phase 8 feature engineering, and Phase 9 model training.

@@ -1,0 +1,128 @@
+# Phase 7 — Demand, Inventory and Opportunity Analysis
+
+Responsibility: Member 2 — Primary owner
+
+Support: Sameera (Member 1) — review the analysis, findings, and potential features for the Random Forest model.
+
+## Objective
+
+Analyze the Phase 6 ODE dataset to understand which operational factors are associated with successful PTL-to-FTL conversion. The goal is to identify demand patterns, inventory constraints, truck-utilization trends, and potentially useful predictive features before proceeding to Phase 8.
+
+## Work to be done
+
+### 1. Analyze the ODE dataset
+
+- Load `ode_opportunities.csv` generated in Phase 6.
+- Inspect its dimensions, column types, missing values, duplicates, and target distribution.
+- Calculate descriptive statistics for numerical features such as remaining weight capacity, remaining volume capacity, inventory availability, proposed cargo weight, and projected utilization.
+- Analyze categorical features such as truck class, route, destination, and product category.
+- Identify class imbalance in `Became_FTL`.
+
+### 2. Analyze demand patterns
+
+- Study historical demand by SKU, destination, and time.
+- Identify products and destinations with consistently high or low demand.
+- Examine demand variability and recurring patterns across the 90-day simulation.
+- Investigate whether historical demand, demand-to-stock ratios, and destination-level demand are associated with FTL conversion.
+- Identify potentially useful demand-related features for Phase 8.
+
+### 3. Analyze inventory availability
+
+- Compare available inventory against eligible open order quantities.
+- Identify products for which stock availability frequently limits consolidation.
+- Analyze whether sufficient inventory exists to fill the remaining truck capacity.
+- Examine how inventory availability, SKU quantities, and product physical attributes relate to successful opportunities.
+
+### 4. Analyze truck utilization
+
+- Examine current and projected utilization by weight and volume.
+- Compare utilization across truck classes, routes, and destinations.
+- Identify situations where weight capacity is sufficient but volume capacity is restrictive, and vice versa.
+- Analyze how remaining capacity and proposed cargo characteristics differ between successful and unsuccessful FTL opportunities.
+
+### 5. Analyze FTL conversion outcomes
+
+Compare records where `Became_FTL = 1` against records where `Became_FTL = 0`.
+
+Investigate differences in:
+
+- Remaining weight and volume capacity.
+- Available inventory and eligible open demand.
+- Proposed SKU combinations and cargo quantities.
+- Truck class and route.
+- Destination demand and historical demand patterns.
+- Planning time and other relevant operational features.
+
+The objective is to identify patterns that may help predict conversion, not to assume that every observed association is causal.
+
+### 6. Perform statistical analysis
+
+- Calculate distributions, means, medians, quartiles, variance, and standard deviation for relevant numerical variables.
+- Examine correlations among numerical features.
+- Compare feature distributions across the two target classes.
+- Use suitable statistical tests where justified by the data and their assumptions.
+- Investigate redundant or highly correlated features that may require attention during Phase 8.
+
+### 7. Visualize the findings
+
+Create relevant plots, including:
+
+- Histograms and box plots for numerical feature distributions.
+- Bar charts for truck classes, destinations, and product categories.
+- Scatter plots to examine relationships between remaining capacity, inventory, demand, and projected utilization.
+- Correlation heatmaps for numerical variables.
+- Class-wise comparisons of important features for `Became_FTL`.
+- Time-series plots of historical demand and conversion trends where the data supports them.
+
+Each visualization should answer a specific analytical question rather than exist only for presentation.
+
+### 8. Compare candidate SKU combinations
+
+- Represent each candidate's proposed SKU set.
+- Use Jaccard similarity to compare SKU combinations across relevant candidates or planning runs.
+- Investigate whether similar SKU sets have different outcomes under different capacity, inventory, demand, or route conditions.
+- Avoid treating similar SKU sets as independent evidence when they share the same underlying operational event.
+
+### 9. Identify candidate features for Phase 8
+
+Based on the analysis, prepare a shortlist of features that may help the models predict FTL conversion.
+
+Examples include:
+
+- Remaining weight capacity and remaining volume capacity.
+- Current and projected utilization.
+- Available inventory and eligible open order quantities.
+- Proposed cargo weight and volume.
+- Demand-to-stock ratios.
+- SKU physical characteristics.
+- Route compatibility and destination-level demand.
+- Historical demand aggregates and variability.
+- Relevant planning-time features.
+
+For each suggested feature, document what it represents, why it may be useful, and whether it is available at prediction time.
+
+Important: Do not use future outcomes, post-dispatch information, or the `Became_FTL` target itself to construct predictive features. Phase 7 may inspect outcomes to understand the data, but any feature used for modelling must be available at the actual prediction timestamp.
+
+### 10. Document the conclusions
+
+Summarize:
+
+- The main patterns observed in demand and inventory.
+- The most important truck-capacity constraints.
+- The differences observed between successful and unsuccessful opportunities.
+- Potentially useful predictive features.
+- Data-quality issues and limitations.
+- Questions to investigate during feature engineering and model training.
+
+## Deliverables
+
+- `notebooks/phase7_opportunity_analysis.ipynb`
+- `reports/phase7_opportunity_analysis.md`
+- Relevant figures saved under `reports/figures/`
+- A documented shortlist of candidate features for Phase 8.
+
+## Expected outcome
+
+At the end of Phase 7, Member 2 should understand the characteristics of the ODE dataset, the operational factors associated with PTL-to-FTL conversion, and which features are worth investigating further.
+
+These findings will guide Phase 8's shared baseline feature engineering, after which Sameera will train Random Forest and Member 2 will train XGBoost using the agreed baseline features.

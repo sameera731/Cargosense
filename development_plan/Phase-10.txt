@@ -1,0 +1,87 @@
+# Phase 10 — Model Integration and Final Results
+
+Responsibility: Sameera (Member 1) and Member 2
+
+## Objective
+
+Integrate the selected model from Phase 9 into the CargoSense workflow, demonstrate how it scores candidate PTL-to-FTL opportunities, and present the final results.
+
+We will keep this phase simple. There is no need to build a complete production system, implement a complex optimization engine, or generate detailed dispatch recommendations. A clear list of candidate opportunities with their predicted scores is sufficient to conclude the project.
+
+## 1. Load the selected model
+
+- Load the best-performing model from Phase 9, along with its saved preprocessing pipeline.
+- Use the model selected based on the comparative evaluation of Random Forest and XGBoost.
+- Retain the baseline-versus-custom results for the final comparison.
+
+## 2. Score candidate opportunities
+
+- Load the candidate dataset generated in Phase 6.
+- Select candidates that satisfy the existing hard feasibility constraints.
+- Apply the Phase 8 preprocessing pipeline and the selected Phase 9 model.
+- Generate a predicted probability or score indicating the likelihood of each candidate becoming FTL.
+
+The model scores existing candidates; it does not generate new SKU combinations.
+
+## 3. Display the results
+
+Create a simple table or DataFrame containing fields such as:
+
+| Field                        | Description                                         |
+| ---------------------------- | --------------------------------------------------- |
+| Candidate ID                 | Unique opportunity identifier                       |
+| Truck ID                     | Truck associated with the candidate                 |
+| Route / Destination          | Intended delivery route                             |
+| Proposed SKUs                | Products included in the candidate                  |
+| Proposed Quantities          | Quantity of each proposed SKU                       |
+| Projected Weight Utilization | Expected weight utilization after loading           |
+| Projected Volume Utilization | Expected volume utilization after loading           |
+| Predicted FTL Probability    | Model-estimated probability of the positive outcome |
+
+Sort the table by predicted FTL probability in descending order to make the results easy to inspect.
+
+These are illustrative output columns; use the fields available in the actual dataset. The displayed probability should only be interpreted as a calibrated probability if calibration has been evaluated.
+
+## 4. Present the final model comparison
+
+Summarize the four Phase 9 experiments in one comparison table:
+
+- Baseline Random Forest
+- Baseline XGBoost
+- Custom-feature Random Forest
+- Custom-feature XGBoost
+
+Include the key evaluation metrics, such as precision, recall, F1-score and PR-AUC where appropriate. Briefly state which model performed best on the held-out test set and whether custom features improved performance.
+
+Do not assume a particular model wins before examining the results.
+
+## 5. Document the final findings
+
+Prepare a short report covering:
+
+- The objective of CargoSense.
+- The synthetic dataset and candidate-generation process.
+- The features used for prediction.
+- The comparison between Random Forest and XGBoost.
+- The final candidate-scoring results.
+- Limitations, including the fact that the system is evaluated on synthetic data.
+
+## Deliverables
+
+- `notebooks/phase10_model_integration.ipynb`
+- `reports/phase10_final_results.md`
+- A final scored-candidates CSV, for example `data/processed/ode_scored_candidates.csv`
+- A model comparison table and a small number of useful result visualizations.
+
+## Expected outcome
+
+By the end of Phase 10, CargoSense will demonstrate a complete learning workflow:
+
+1. Generate synthetic operational data.
+2. Identify feasible PTL-to-FTL candidate opportunities.
+3. Analyze the data and engineer predictive features.
+4. Train and compare Random Forest and XGBoost.
+5. Apply the selected model to score candidate opportunities.
+6. Display the results and summarize the findings.
+
+That is enough to conclude the project gracefully. The final output can be a ranked list of candidate opportunities, accompanied by model evaluation results and a concise explanation of what worked, what did not, and what could be improved in future work. No additional optimization engine or production deployment is required.

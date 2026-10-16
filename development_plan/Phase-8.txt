@@ -1,0 +1,246 @@
+# Phase 8 — Feature Engineering and Data Preprocessing
+
+Primary responsibility: Member 2
+
+Review and collaboration: Sameera (Member 1 — Random Forest)
+
+## Objective
+
+Prepare the Phase 6 ODE candidate dataset and the findings from Phase 7 for machine learning. This phase will define a shared baseline feature set and preprocessing pipeline that both Random Forest and XGBoost can use for a fair comparison in Phase 9.
+
+The goal is to transform raw operational information into meaningful, model-ready features while preventing data leakage and ensuring that both models are evaluated consistently.
+
+Important model requirement: Strictly keep Random Forest and XGBoost. These two models are mandatory because the project demonstrates bagging versus boosting using decision trees. Additional models may be explored, but they must not replace these two.
+
+## 1. Review the Phase 6 and Phase 7 outputs
+
+Start by loading:
+
+- `data/processed/ode_opportunities.csv` — candidate-level dataset from Phase 6.
+- `notebooks/phase7_opportunity_analysis.ipynb` — analysis from Phase 7.
+- `reports/phase7_opportunity_analysis.md` — documented findings and shortlisted features.
+
+Tasks:
+
+1. Verify the dataset dimensions, column names, data types, missing values and duplicate candidate IDs.
+2. Confirm that each row represents one proposed PTL-to-FTL opportunity: a truck, planning timestamp, route and proposed cargo combination.
+3. Review the Phase 7 feature shortlist and its relationship with `Became_FTL`.
+4. Check whether each proposed feature is actually available at the candidate's prediction timestamp.
+5. Identify columns that should be excluded, such as IDs that merely identify records, post-dispatch outcomes and any fields derived from the target.
+
+Expected outcome: A documented list of usable features, excluded features and reasons for exclusion.
+
+## 2. Define the shared baseline feature set
+
+Member 2 should define the baseline features that both models will initially use.
+
+These are candidate features to verify against the actual Phase 6 schema, not assumptions that every column already exists.
+
+| Feature group           | Example features                                                           | Why they matter                                       |
+| ----------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------- |
+| Truck capacity          | Maximum payload weight, maximum volume                                     | Defines the truck's physical limits                   |
+| Current utilization     | Current weight utilization, current volume utilization                     | Shows how much of the truck is already occupied       |
+| Remaining capacity      | Remaining weight and remaining volume                                      | Indicates the space available for consolidation       |
+| Proposed cargo          | Candidate cargo weight, candidate cargo volume, proposed quantities        | Measures the load being considered                    |
+| Inventory               | Available inventory for proposed SKUs                                      | Determines whether the cargo can actually be supplied |
+| Open demand             | Eligible open-order quantity for the destination                           | Indicates whether sufficient demand exists            |
+| Demand patterns         | Historical SKU-destination demand, demand variability, recent demand trend | Captures recurring demand patterns                    |
+| Product characteristics | SKU count, average unit weight, total product volume, product category     | Describes the proposed cargo                          |
+| Route and destination   | Route, destination city, route compatibility                               | Captures logistical constraints and differences       |
+| Planning time           | Hour, day of week, time-related features                                   | Captures temporal patterns known at prediction time   |
+
+The target is `Became_FTL`. It is the label the models will learn to predict, not an input feature.
+
+Do not include future dispatch status, final truck utilization, actual future shipped quantities or other information unavailable when the prediction is made.
+
+## 3. Perform feature engineering
+
+Transform existing operational columns into features that better represent the PTL-to-FTL problem.
+
+### 3.1 Capacity and utilization features
+
+Calculate, where not already available:
+
+- Current weight utilization percentage.
+- Current volume utilization percentage.
+- Remaining weight capacity.
+- Remaining volume capacity.
+- Projected weight utilization after adding the proposed cargo.
+- Projected volume utilization after adding the proposed cargo.
+
+For example:
+
+\\[ \text{Weight Utilization (\\%)} = \frac{\text{Current Load Weight}}{\text{Maximum Payload Weight}}\times100 \\]
+
+\\[ \text{Projected Weight Utilization (\\%)} = \frac{\text{Current Load Weight}+\text{Candidate Cargo Weight}} {\text{Maximum Payload Weight}}\times100 \\]
+
+Apply equivalent calculations for volume.
+
+A candidate must respect both weight and volume limits. High utilization in one dimension does not guarantee that the cargo fits in the other.
+
+### 3.2 Inventory and demand features
+
+Where the underlying data supports them, engineer:
+
+- Total available inventory for proposed SKUs.
+- Total eligible open demand for the candidate destination.
+- Demand-to-stock ratio.
+- Inventory sufficiency relative to proposed quantities.
+- Historical average demand for the relevant SKU and destination.
+- Recent demand trend or demand variability.
+
+Handle zero denominators explicitly when computing ratios. Ensure inventory and demand values are reconstructed as of the prediction timestamp, not taken from future snapshots.
+
+### 3.3 Cargo and product features
+
+Possible engineered features include:
+
+- Total proposed cargo weight and volume.
+- Number of distinct SKUs in the candidate.
+- Weighted average unit weight.
+- Cargo quantity relative to eligible open demand.
+- Cargo quantity relative to available inventory.
+- Product-category composition of the proposed combination.
+
+Use definitions that are consistent across candidates. If a candidate contains multiple SKUs, document how each aggregate is calculated.
+
+### 3.4 Route and time features
+
+- Encode route and destination categories.
+- Extract hour, day of week or other useful calendar features from the planning timestamp.
+- Consider route-specific demand patterns if sufficient historical observations exist.
+
+Avoid arbitrary numeric encoding of categories when the numbers would imply a false ordering.
+
+Expected outcome: A documented baseline feature set with precise definitions, formulas and data sources.
+
+## 4. Handle missing values and inconsistent data
+
+Inspect missingness after feature engineering, because derived features can introduce new missing values.
+
+Tasks:
+
+1. Determine why values are missing rather than automatically replacing everything with zero.
+2. Use `SimpleImputer` for suitable numeric and categorical features.
+3. Use a consistent missing-value strategy for both models where practical.
+4. Investigate invalid values, such as negative remaining capacity caused by incorrect upstream calculations.
+5. Validate that ratios, percentages and engineered features fall within plausible ranges.
+6. Do not use target labels to impute input features.
+
+Remember: a genuine zero inventory level differs from an unknown inventory value. Preserve that distinction.
+
+## 5. Build the preprocessing pipeline
+
+Integrate the relevant data-preprocessing topics from your syllabus:
+
+- `SimpleImputer`
+- `StandardScaler`
+- `OneHotEncoder`
+- `ColumnTransformer`
+- `Pipeline`
+
+A possible baseline pipeline is:
+
+```
+from sklearn.compose import ColumnTransformerfrom sklearn.pipeline import Pipelinefrom sklearn.impute import SimpleImputerfrom sklearn.preprocessing import StandardScaler, OneHotEncoderfrom sklearn.ensemble import RandomForestClassifiernumeric_pipeline = Pipeline([    ("imputer", SimpleImputer(strategy="median")),    ("scaler", StandardScaler())])categorical_pipeline = Pipeline([    ("imputer", SimpleImputer(strategy="most_frequent")),    ("encoder", OneHotEncoder(handle_unknown="ignore"))])preprocessor = ColumnTransformer([    ("numeric", numeric_pipeline, numeric_features),    ("categorical", categorical_pipeline, categorical_features)])baseline_pipeline = Pipeline([    ("preprocessor", preprocessor),    ("model", RandomForestClassifier(random_state=42))])
+```
+
+This is an illustrative pipeline for Random Forest; it is not the final training script. The numeric and categorical column lists must be created from the actual dataset.
+
+For XGBoost, the same baseline feature definitions should be used, but preprocessing may be adapted to its input requirements. Scaling is generally not necessary for tree-based models, so document whether it is retained or omitted for each algorithm.
+
+Critical rule: Fit imputers, scalers and encoders using training data only. Do not fit preprocessing on the full dataset before splitting.
+
+## 6. Create a leakage-safe training and test split
+
+This is especially important because CargoSense contains timestamped planning runs and repeated operational snapshots.
+
+Tasks:
+
+1. Separate the target `Became_FTL` from the input features.
+2. Use a chronological training/validation/test strategy where feasible.
+3. Keep candidates from the same planning run, or other closely related operational groups, from leaking across splits where this is necessary to preserve realistic evaluation.
+4. Make the split identical for both baseline models.
+5. Inspect target class proportions in each split.
+6. Record the date ranges and candidate counts for every split.
+
+A random split may produce overly optimistic results if closely related candidates appear in both training and test sets.
+
+If the dataset does not contain enough independent time periods or positive outcomes for a reliable split, document that limitation rather than presenting weak evaluation as conclusive.
+
+## 7. Prepare the baseline experiment configuration
+
+Phase 8 should define how the two models will be compared in Phase 9, without replacing Phase 9's actual training and evaluation work.
+
+Record:
+
+- Target definition and positive class.
+- Shared baseline feature list.
+- Excluded columns and leakage checks.
+- Training, validation and test membership.
+- Random seed and split methodology.
+- Preprocessing choices.
+- Initial model configuration and planned tuning strategy.
+- Metrics to report.
+
+Use more than accuracy. At minimum, Phase 9 should compare precision, recall, F1-score and confusion matrices. Consider PR-AUC if positive outcomes are relatively rare.
+
+## 8. Document the feature engineering decisions
+
+Create a feature dictionary containing:
+
+| Field                   | What to document                                |
+| ----------------------- | ----------------------------------------------- |
+| Feature name            | Exact column name                               |
+| Definition              | Meaning and calculation                         |
+| Source                  | Original table or derived feature               |
+| Availability            | Whether it is known at prediction time          |
+| Data type               | Numeric, categorical or other                   |
+| Missing-value treatment | How missing values are handled                  |
+| Leakage assessment      | Why it is safe to use                           |
+| Model usage             | Shared baseline or later model-specific feature |
+
+Also document any features considered but rejected, including the reason for rejection.
+
+## 9. Keep custom model-specific features for Phase 9
+
+Phase 8 establishes the shared baseline, not separate optimized feature sets for each model.
+
+In Phase 9, the team will conduct four main experiments:
+
+| Experiment | Model         | Feature set                        | Responsible person |
+| ---------- | ------------- | ---------------------------------- | ------------------ |
+| Run 1      | Random Forest | Shared baseline                    | Sameera            |
+| Run 2      | XGBoost       | Shared baseline                    | Member 2           |
+| Run 3      | Random Forest | Baseline + custom RF features      | Sameera            |
+| Run 4      | XGBoost       | Baseline + custom XGBoost features | Member 2           |
+
+Custom features should be motivated by Phase 7 findings or model-specific experimentation. Keep the held-out test set and target definition consistent so that comparisons remain meaningful.
+
+## Deliverables
+
+Member 2 should produce:
+
+- `notebooks/phase8_feature_engineering.ipynb`
+- A reusable preprocessing module, if the project structure supports it.
+- A documented baseline feature list and feature dictionary.
+- A leakage-safe split definition or saved split identifiers.
+- A preprocessing pipeline that can be fitted on training data and applied consistently.
+- `reports/phase8_feature_engineering.md`
+- Validation checks covering missing values, invalid derived values, target leakage and split integrity.
+
+Suggested output locations can be adjusted to match the repository's existing structure.
+
+## Expected outcome
+
+At the end of Phase 8, CargoSense should have a validated, leakage-aware baseline ML dataset and preprocessing setup ready for Phase 9.
+
+The responsibilities remain clear:
+
+- Phase 6: Generate feasible candidate cargo combinations.
+- Phase 7: Analyze the candidates and identify useful patterns.
+- Phase 8: Engineer and preprocess the shared baseline features.
+- Phase 9: Train, evaluate and compare Random Forest and XGBoost, then test custom features.
+- Phase 10: Apply the selected model to feasible candidates and rank operational recommendations.
+
+One final distinction: the model predicts the likelihood that a candidate opportunity becomes FTL. It does not itself generate SKU combinations or guarantee that a recommendation will succeed. Candidate generation, feasibility checks and final operational decisions remain separate parts of the ODE.

@@ -1,0 +1,353 @@
+# Phase 9 — Model Training, Evaluation and Comparative Analysis
+
+Primary responsibility: Shared work between Sameera (Member 1 — Random Forest) and Member 2 (XGBoost).
+
+Objective: Train and evaluate two mandatory machine learning models to predict whether a proposed PTL-to-FTL consolidation opportunity will become FTL. Compare their baseline performance, engineer model-specific features, retrain both models, and determine which model is more suitable for the CargoSense Opportunity Detection Engine (ODE).
+
+This phase is where the actual ML models are implemented, trained, tested and compared. Phase 8 prepares the features; Phase 9 uses those features to build the predictive models.
+
+## 1. The models we will use — mandatory
+
+Strictly retain Random Forest and XGBoost. Both models are mandatory because our project demonstrates the difference between bagging and boosting using decision trees. Additional models may be explored, but they must not replace these two.
+
+[Anas Brital     | Random Forest Algorithm Explained .](https://images.openai.com/static-rsc-4/DshuetBtfoTcRliwzj3u4-X9BpDtwvau1w98pDhutzUpuiqRk-3M9wxjIY8XIFsDhnwWNwKV9pLUtlseeOHfpbShRzY0r-2D4J3D5Uqn0Ik5RHnyAvsBw54iltKbeVcii1Z8dSSHkLMR7uB4xCA57Tsxo4eZZo7jsmChlNHFLsA?purpose=inline)
+
+## Model 1 — Random Forest
+
+Bagging
+
+Responsible person: Sameera — Member 1
+
+Random Forest trains multiple decision trees using different bootstrap samples of the training data and randomized feature subsets. Their predictions are aggregated to produce a final classification or probability estimate.
+
+- Learning approach: Bagging (Bootstrap Aggregating).
+- Main purpose: Reduce variance and improve generalization compared with relying on a single decision tree.
+- Why it fits CargoSense: It can learn nonlinear relationships between truck capacity, proposed cargo, inventory, demand and route characteristics.
+- Expected output: Predicted probability or score for `Became_FTL = 1`.
+
+[All about XGBoost. This article Contains ::  1… | by Gauri Bhatnagar | Medium](https://images.openai.com/static-rsc-4/uncMIOrIaT-iiHgu2YM2fh3yOf5ieBks-g8LePEOwmnyrq9xVGhEzcNYG94xDmoM2-kU32HzZ2Ht3k1gW_fJT5AyT4ndvLrKlkcJOHahTnMOfAjW-AiPrQynwUGEKrO-SY4mRIMizcZjFh3HgQzEaonK07mC6AjiW2MPsU4D214?purpose=inline)
+
+## Model 2 — XGBoost
+
+Boosting
+
+Responsible person: Member 2
+
+XGBoost builds an ensemble of decision trees sequentially. Each new tree helps improve the ensemble's predictions by optimizing an objective function using gradient boosting.
+
+- Learning approach: Gradient boosting.
+- Main purpose: Build a strong predictive ensemble by iteratively improving the model's objective.
+- Why it fits CargoSense: It can capture complex interactions among demand, available inventory, remaining capacity and candidate cargo characteristics.
+- Expected output: Predicted probability or score for `Became_FTL = 1`.
+
+### Why are we choosing these two models?
+
+Our dataset is structured operational tabular data. The relationship between a candidate's features and its eventual outcome may be nonlinear. For example, a candidate might have sufficient remaining weight capacity but insufficient volume capacity, or the inventory may be available while destination demand is too low.
+
+Tree ensembles can learn these kinds of interactions without requiring us to specify a linear relationship in advance.
+
+| Comparison         | Random Forest                                | XGBoost                                                            |
+| ------------------ | -------------------------------------------- | ------------------------------------------------------------------ |
+| Ensemble technique | Bagging                                      | Boosting                                                           |
+| Tree construction  | Trees trained independently                  | Trees added sequentially                                           |
+| Primary mechanism  | Aggregates tree predictions                  | Optimizes the ensemble iteratively                                 |
+| Main tuning areas  | Number of trees, depth, split and leaf sizes | Number of boosting rounds, learning rate, depth and regularization |
+| Key comparison     | Generalization and variance reduction        | Predictive performance through iterative optimization              |
+
+Neither model is guaranteed to perform better. The held-out test results will determine which is more suitable for this dataset.
+
+## 2. Responsibilities and ownership
+
+| Task                          | Sameera — Member 1  | Member 2            |
+| ----------------------------- | ------------------- | ------------------- |
+| Baseline Random Forest        | Primary owner       | Review shared setup |
+| Baseline XGBoost              | Review shared setup | Primary owner       |
+| Custom Random Forest features | Primary owner       | Review              |
+| Custom XGBoost features       | Review              | Primary owner       |
+| Common evaluation protocol    | Collaborate         | Collaborate         |
+| Comparative results report    | Collaborate         | Collaborate         |
+| Final model recommendation    | Collaborate         | Collaborate         |
+
+Both members must use the same target definition and held-out test candidates for the main comparisons. Model-specific preprocessing can differ where technically justified, but it must be documented.
+
+## 3. Load the Phase 8 dataset and establish the prediction task
+
+Inputs:
+
+- `data/processed/ode_opportunities.csv`
+- `notebooks/phase8_feature_engineering.ipynb`
+- Phase 8 feature dictionary and preprocessing pipeline
+- The training, validation and test split defined in Phase 8
+
+Tasks:
+
+1. Load the candidate-level dataset and inspect its shape, data types, missing values and target distribution.
+2. Define `Became_FTL` as the binary target:
+   - `1`: the candidate satisfies the documented definition of becoming FTL within the observation window.
+   - `0`: the candidate is observed sufficiently to establish that it did not meet that definition within the window.
+3. Exclude outcomes that cannot be determined reliably because the observation window is incomplete. Do not automatically label these as negative.
+4. Separate the target from the input features.
+5. Exclude identifiers that provide no legitimate predictive information, future outcomes and post-dispatch variables.
+6. Confirm that the training and test split is identical for both baseline models.
+
+The prediction timestamp must be explicit. The model should only use information available when the candidate is scored.
+
+## 4. Experiment 1 — Train the baseline Random Forest
+
+Owner: Sameera
+
+Use the shared Phase 8 baseline features to establish the first model's performance.
+
+Tasks:
+
+1. Build the Random Forest pipeline using the approved preprocessing steps.
+2. Start with a documented baseline configuration.
+3. Train on the training split.
+4. Use validation data for model selection and tuning.
+5. Test the selected configuration on the held-out test set.
+6. Generate predicted classes and predicted probabilities.
+7. Record the evaluation metrics and confusion matrix.
+8. Save the fitted model and the preprocessing pipeline together.
+
+Possible initial configuration:
+
+```
+RandomForestClassifier(    n_estimators=200,    max_depth=None,    min_samples_split=2,    min_samples_leaf=1,    random_state=42,    n_jobs=-1)
+```
+
+These are starting values, not guaranteed optimal settings. Tune using validation data rather than repeatedly adjusting the model based on test performance.
+
+Deliverable: Baseline Random Forest model, predictions and evaluation results.
+
+## 5. Experiment 2 — Train the baseline XGBoost
+
+Owner: Member 2
+
+Use the same baseline feature definitions and evaluation split to establish XGBoost's performance.
+
+Tasks:
+
+1. Install and configure XGBoost in the project's selected Python environment.
+2. Prepare compatible numeric and categorical inputs through the approved preprocessing pipeline.
+3. Train the XGBoost classifier using the training split.
+4. Tune hyperparameters using validation data.
+5. Evaluate the selected configuration on the same held-out test candidates.
+6. Generate predicted classes and probabilities.
+7. Save the fitted model, preprocessing pipeline and evaluation results.
+
+Possible initial configuration:
+
+```
+XGBClassifier(    n_estimators=200,    max_depth=4,    learning_rate=0.05,    subsample=0.8,    colsample_bytree=0.8,    objective="binary:logistic",    eval_metric="logloss",    random_state=42)
+```
+
+These are illustrative starting values. The final parameters should be documented, and early stopping can be used where supported by the training setup.
+
+Deliverable: Baseline XGBoost model, predictions and evaluation results.
+
+## 6. Evaluate both baseline models
+
+Do not compare the models using accuracy alone. A model could achieve high accuracy simply by predicting the majority class when successful FTL conversions are relatively rare.
+
+Use the following metrics:
+
+| Metric           | What it tells us                                                                |
+| ---------------- | ------------------------------------------------------------------------------- |
+| Accuracy         | Overall proportion of correct predictions                                       |
+| Precision        | Of the candidates predicted to become FTL, how many actually did?               |
+| Recall           | Of the candidates that became FTL, how many did the model identify?             |
+| F1-score         | Balance between precision and recall                                            |
+| Confusion matrix | Counts true positives, true negatives, false positives and false negatives      |
+| PR-AUC           | How well the model ranks positive candidates across precision-recall thresholds |
+
+For CargoSense, precision and recall have practical implications:
+
+- Low precision: The ODE may prioritize many candidates that do not subsequently become FTL.
+- Low recall: The ODE may miss many opportunities that would become FTL.
+- High F1-score: A useful balance between precision and recall, although the final priority depends on operational costs.
+- High PR-AUC: Potentially useful ranking performance when positive outcomes are uncommon.
+
+Also compare probability calibration if the scores will be interpreted as probabilities. A predicted probability of 0.8 should not automatically be assumed to mean an 80% success rate without checking calibration.
+
+## 7. Experiment 3 — Custom feature engineering for Random Forest
+
+Owner: Sameera
+
+After the baseline Random Forest run, use Phase 7 findings to create additional features that could help Random Forest distinguish successful from unsuccessful opportunities.
+
+Possible ideas, subject to data availability and validation:
+
+- Weight-capacity utilization and volume-capacity utilization as separate features.
+- Inventory sufficiency relative to proposed quantities.
+- Demand-to-stock ratios.
+- Historical demand variability for the candidate's SKU-destination combination.
+- SKU diversity and proposed cargo composition.
+- Interactions between route, demand and truck capacity.
+- Relative cargo quantities compared with available demand.
+
+Do not add features merely to increase the number of columns. Each feature should have a reason to improve prediction.
+
+Tasks:
+
+1. Document the hypothesis behind each new feature.
+2. Confirm that it can be computed using information available at prediction time.
+3. Implement the custom feature transformations.
+4. Refit preprocessing on training data only.
+5. Train and tune the enhanced Random Forest using the same split.
+6. Evaluate on the unchanged test set.
+7. Compare the enhanced model against baseline Random Forest.
+
+Deliverable: Custom-feature Random Forest model and a baseline-versus-custom comparison.
+
+## 8. Experiment 4 — Custom feature engineering for XGBoost
+
+Owner: Member 2
+
+Member 2 will independently investigate additional features that may improve XGBoost's predictions.
+
+Potential ideas include:
+
+- Nonlinear demand-to-capacity relationships.
+- SKU and destination demand interactions.
+- Candidate cargo relative to remaining weight and volume capacity.
+- Historical demand trends and variability.
+- Route-specific or truck-class-specific patterns, where supported by enough training data.
+
+The custom features may overlap with Sameera's features, but the rationale and feature definitions must be recorded. Both models must continue to predict the same target.
+
+Tasks:
+
+1. Select and justify custom XGBoost features.
+2. Verify feature availability at prediction time.
+3. Apply preprocessing consistently without fitting on validation or test data.
+4. Train and tune the enhanced XGBoost model.
+5. Evaluate on the same held-out test set.
+6. Compare the enhanced model against baseline XGBoost.
+
+Deliverable: Custom-feature XGBoost model and a baseline-versus-custom comparison.
+
+## 9. Complete the four-run experiment matrix
+
+The four required experiments are:
+
+## 1
+
+Baseline Random Forest
+
+Sameera · Shared Phase 8 features
+
+Establish the baseline performance of the bagging model.
+
+## 2
+
+Baseline XGBoost
+
+Member 2 · Shared Phase 8 features
+
+Establish the baseline performance of the boosting model.
+
+## 3
+
+Custom-feature Random Forest
+
+Sameera · Baseline + custom RF features
+
+Test whether feature engineering improves Random Forest.
+
+## 4
+
+Custom-feature XGBoost
+
+Member 2 · Baseline + custom XGBoost features
+
+Test whether feature engineering improves XGBoost.
+
+This matrix answers two different questions:
+
+1. Algorithm comparison: Does Random Forest or XGBoost perform better with the shared baseline features?
+2. Feature engineering comparison: Does the custom feature set improve each model compared with its own baseline?
+
+Keep the held-out test set unchanged across all four runs. If model selection or feature engineering repeatedly uses test results, the comparison becomes biased. Ideally, reserve the test set until the experiments are finalized.
+
+## 10. Analyze feature importance and model behavior
+
+For both models, investigate which features contribute to predictions.
+
+For Random Forest:
+
+- Tree-based feature importance.
+- Permutation importance on held-out data, where appropriate.
+
+For XGBoost:
+
+- Gain-based feature importance.
+- Permutation importance on held-out data, where appropriate.
+
+Also consider SHAP explanations if the team has time and the implementation is reliable.
+
+Tasks:
+
+1. Compare important features across the two models.
+2. Check whether the important features are operationally plausible.
+3. Investigate suspicious importance assigned to identifiers, timestamps or proxy variables.
+4. Examine false positives and false negatives.
+5. Explain what the models learned without claiming that feature importance proves causality.
+
+Feature importance can be misleading when features are correlated, so use it as an interpretability aid rather than definitive evidence.
+
+## 11. Select the model for Phase 10
+
+Do not automatically select XGBoost because it is more complex, or Random Forest because it is easier to explain.
+
+Choose based on:
+
+- Held-out predictive performance.
+- Precision-recall trade-offs.
+- Ability to rank useful candidates.
+- Stability across relevant time periods.
+- Probability calibration, if probabilities drive prioritization.
+- Inference time and deployment complexity.
+- Interpretability and maintenance requirements.
+
+The business may prefer higher precision if false recommendations are expensive, or higher recall if missing a valuable consolidation opportunity is more costly. Document the trade-off.
+
+The selected model will supply a probability or score to Phase 10. It will not generate SKU combinations, guarantee FTL conversion or replace hard feasibility rules.
+
+## Deliverables
+
+Suggested repository outputs:
+
+- `notebooks/phase9_random_forest.ipynb`
+- `notebooks/phase9_xgboost.ipynb`
+- `src/models/random_forest_model.py`
+- `src/models/xgboost_model.py`
+- `src/models/evaluation.py`
+- `reports/phase9_model_comparison.md`
+- Saved model and preprocessing artifacts for the baseline and selected custom-feature runs.
+- Metrics table, confusion matrices, feature-importance plots and prediction outputs.
+
+Adapt the paths to the existing repository rather than duplicating equivalent files.
+
+## Expected outcome
+
+By the end of Phase 9, the team should have:
+
+1. Two implemented models: Random Forest and XGBoost.
+2. Four documented experiments: two baseline runs and two custom-feature runs.
+3. Comparable evaluation results using the same held-out test set.
+4. An analysis of model behavior and feature importance.
+5. A justified choice of model for the next phase.
+6. Saved artifacts that can score newly generated, feasible ODE candidates.
+
+## What happens in Phase 10?
+
+Phase 10 integrates the chosen model into the operational Opportunity Detection Engine:
+
+1. Generate candidate cargo combinations using the Phase 6 candidate-generation logic.
+2. Filter candidates that violate hard constraints, including route compatibility, inventory availability, open demand, payload capacity and volume capacity.
+3. Pass eligible candidates through the saved Phase 8 preprocessing pipeline and selected Phase 9 model.
+4. Score candidates using the model's predictions.
+5. Rank the candidates according to the chosen business priorities.
+6. Produce the final dispatch recommendations with explanations and feasibility checks.
+
+The important separation is that Phase 6 generates opportunities, Phase 9 predicts their likely outcomes, and Phase 10 turns eligible scored opportunities into ranked recommendations.
