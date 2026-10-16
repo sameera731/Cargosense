@@ -1,0 +1,45 @@
+{
+  "train": {
+    "n_runs": 62,
+    "date_range": [
+      "20240101",
+      "20240302"
+    ],
+    "n_shipments": 511,
+    "n_candidates": 1533,
+    "n_positives": 141,
+    "n_negatives": 1392,
+    "positive_rate": 0.09197651663405088
+  },
+  "val": {
+    "n_runs": 13,
+    "date_range": [
+      "20240303",
+      "20240315"
+    ],
+    "n_shipments": 107,
+    "n_candidates": 321,
+    "n_positives": 23,
+    "n_negatives": 298,
+    "positive_rate": 0.07165109034267912
+  },
+  "test": {
+    "n_runs": 14,
+    "date_range": [
+      "20240316",
+      "20240329"
+    ],
+    "n_shipments": 109,
+    "n_candidates": 327,
+    "n_positives": 22,
+    "n_negatives": 305,
+    "positive_rate": 0.0672782874617737
+  },
+  "total": {
+    "n_runs": 89,
+    "n_shipments": 727,
+    "n_candidates": 2181,
+    "n_positives": 186,
+    "positive_rate": 0.08528198074277854
+  }
+}
