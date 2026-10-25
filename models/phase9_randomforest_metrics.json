@@ -1,0 +1,509 @@
+{
+  "metadata": {
+    "phase": "Phase 9",
+    "owner": "Sameera (Member 1 \u2014 Random Forest Lead)",
+    "models_evaluated": [
+      "Run 1: Baseline Random Forest",
+      "Run 3: Custom Random Forest"
+    ],
+    "target": "Became_FTL",
+    "train_class_weight": "balanced",
+    "seed": 42,
+    "baseline_raw_features": [
+      "remaining_capacity_kg",
+      "remaining_capacity_m3",
+      "candidate_added_weight_kg",
+      "candidate_added_volume_m3",
+      "projected_weight_util_pct",
+      "projected_volume_util_pct",
+      "n_candidate_skus",
+      "candidate_total_qty",
+      "mean_demand_last_7d_route",
+      "route_transit_hours",
+      "days_into_simulation",
+      "truck_type",
+      "route_id",
+      "day_of_week"
+    ],
+    "custom_raw_features": [
+      "remaining_capacity_kg",
+      "remaining_capacity_m3",
+      "candidate_added_weight_kg",
+      "candidate_added_volume_m3",
+      "projected_weight_util_pct",
+      "projected_volume_util_pct",
+      "n_candidate_skus",
+      "candidate_total_qty",
+      "mean_demand_last_7d_route",
+      "route_transit_hours",
+      "days_into_simulation",
+      "cargo_density_kg_m3",
+      "weight_fill_ratio",
+      "volume_fill_ratio",
+      "avg_unit_weight_kg",
+      "capacity_bottleneck_ratio",
+      "truck_type",
+      "route_id",
+      "day_of_week"
+    ],
+    "additional_features_investigated": {
+      "capacity_bottleneck_ratio": {
+        "formula": "min(weight_fill_ratio, volume_fill_ratio)",
+        "decision": "INCLUDED in Run 3",
+        "rationale": "Implements Liebig's Law of the Minimum for dual capacity constraints. Boosted validation PR-AUC from 0.2958 to 0.3216."
+      },
+      "capacity_utilization_imbalance": {
+        "formula": "abs(weight_fill_ratio - volume_fill_ratio)",
+        "decision": "REJECTED",
+        "rationale": "Mathematically redundant with capacity_bottleneck_ratio (collinear r = -1.000) due to candidate generation heuristics saturating max(w, v) \u2248 1.0. Adding both reduced validation PR-AUC to 0.3213."
+      }
+    }
+  },
+  "run1_baseline_random_forest": {
+    "parameters": {
+      "n_estimators": 50,
+      "max_depth": 10,
+      "min_samples_split": 2,
+      "min_samples_leaf": 2,
+      "max_features": "sqrt",
+      "class_weight": "balanced",
+      "random_state": 42,
+      "n_jobs": 1
+    },
+    "optimal_threshold": 0.38999999999999996,
+    "validation_metrics_default_th": {
+      "val_th05_pr_auc": 0.30423,
+      "val_th05_roc_auc": 0.87832,
+      "val_th05_brier_score": 0.0725,
+      "val_th05_threshold": 0.5,
+      "val_th05_precision": 0.29032,
+      "val_th05_recall": 0.3913,
+      "val_th05_f1": 0.33333,
+      "val_th05_accuracy": 0.88785,
+      "val_th05_specificity": 0.92617,
+      "val_th05_tp": 9,
+      "val_th05_fp": 22,
+      "val_th05_tn": 276,
+      "val_th05_fn": 14,
+      "val_th05_confusion_matrix": [
+        [
+          276,
+          22
+        ],
+        [
+          14,
+          9
+        ]
+      ],
+      "val_th05_total_samples": 321,
+      "val_th05_positive_samples": 23,
+      "val_th05_positive_rate": 0.07165
+    },
+    "validation_metrics_optimal_th": {
+      "val_opt_pr_auc": 0.30423,
+      "val_opt_roc_auc": 0.87832,
+      "val_opt_brier_score": 0.0725,
+      "val_opt_threshold": 0.39,
+      "val_opt_precision": 0.25373,
+      "val_opt_recall": 0.73913,
+      "val_opt_f1": 0.37778,
+      "val_opt_accuracy": 0.82555,
+      "val_opt_specificity": 0.83221,
+      "val_opt_tp": 17,
+      "val_opt_fp": 50,
+      "val_opt_tn": 248,
+      "val_opt_fn": 6,
+      "val_opt_confusion_matrix": [
+        [
+          248,
+          50
+        ],
+        [
+          6,
+          17
+        ]
+      ],
+      "val_opt_total_samples": 321,
+      "val_opt_positive_samples": 23,
+      "val_opt_positive_rate": 0.07165
+    },
+    "test_metrics_default_th": {
+      "test_th05_pr_auc": 0.22329,
+      "test_th05_roc_auc": 0.86155,
+      "test_th05_brier_score": 0.07113,
+      "test_th05_threshold": 0.5,
+      "test_th05_precision": 0.26316,
+      "test_th05_recall": 0.22727,
+      "test_th05_f1": 0.2439,
+      "test_th05_accuracy": 0.9052,
+      "test_th05_specificity": 0.9541,
+      "test_th05_tp": 5,
+      "test_th05_fp": 14,
+      "test_th05_tn": 291,
+      "test_th05_fn": 17,
+      "test_th05_confusion_matrix": [
+        [
+          291,
+          14
+        ],
+        [
+          17,
+          5
+        ]
+      ],
+      "test_th05_total_samples": 327,
+      "test_th05_positive_samples": 22,
+      "test_th05_positive_rate": 0.06728
+    },
+    "test_metrics_optimal_th": {
+      "test_opt_pr_auc": 0.22329,
+      "test_opt_roc_auc": 0.86155,
+      "test_opt_brier_score": 0.07113,
+      "test_opt_threshold": 0.39,
+      "test_opt_precision": 0.21053,
+      "test_opt_recall": 0.54545,
+      "test_opt_f1": 0.3038,
+      "test_opt_accuracy": 0.8318,
+      "test_opt_specificity": 0.85246,
+      "test_opt_tp": 12,
+      "test_opt_fp": 45,
+      "test_opt_tn": 260,
+      "test_opt_fn": 10,
+      "test_opt_confusion_matrix": [
+        [
+          260,
+          45
+        ],
+        [
+          10,
+          12
+        ]
+      ],
+      "test_opt_total_samples": 327,
+      "test_opt_positive_samples": 22,
+      "test_opt_positive_rate": 0.06728
+    },
+    "top_features_tree_mdi": [
+      {
+        "feature": "num__projected_volume_util_pct",
+        "importance": 0.21622751831160641
+      },
+      {
+        "feature": "num__projected_weight_util_pct",
+        "importance": 0.198459814455234
+      },
+      {
+        "feature": "num__candidate_total_qty",
+        "importance": 0.16371882463551457
+      },
+      {
+        "feature": "num__candidate_added_weight_kg",
+        "importance": 0.1149870274054212
+      },
+      {
+        "feature": "num__n_candidate_skus",
+        "importance": 0.07417267671235984
+      },
+      {
+        "feature": "num__candidate_added_volume_m3",
+        "importance": 0.059374177778901596
+      },
+      {
+        "feature": "num__remaining_capacity_kg",
+        "importance": 0.03409481481201716
+      },
+      {
+        "feature": "num__remaining_capacity_m3",
+        "importance": 0.028932040377247507
+      },
+      {
+        "feature": "num__mean_demand_last_7d_route",
+        "importance": 0.028592352080540243
+      },
+      {
+        "feature": "num__days_into_simulation",
+        "importance": 0.02652151276193891
+      }
+    ],
+    "top_features_permutation_val": [
+      {
+        "feature": "num__projected_volume_util_pct",
+        "mean_pr_auc_drop": 0.051248667327346085,
+        "std": 0.024418498535201876
+      },
+      {
+        "feature": "num__projected_weight_util_pct",
+        "mean_pr_auc_drop": 0.043100208010490935,
+        "std": 0.025953672355773904
+      },
+      {
+        "feature": "num__candidate_total_qty",
+        "mean_pr_auc_drop": 0.03375127593463438,
+        "std": 0.03472993939788486
+      },
+      {
+        "feature": "num__n_candidate_skus",
+        "mean_pr_auc_drop": 0.02557496732290157,
+        "std": 0.01467974123671765
+      },
+      {
+        "feature": "cat__day_of_week_1",
+        "mean_pr_auc_drop": 0.02444257574645292,
+        "std": 0.0034160812302715805
+      },
+      {
+        "feature": "num__candidate_added_weight_kg",
+        "mean_pr_auc_drop": 0.023435166155624982,
+        "std": 0.018947109256290846
+      },
+      {
+        "feature": "num__candidate_added_volume_m3",
+        "mean_pr_auc_drop": 0.021363511314571877,
+        "std": 0.015529919440477559
+      },
+      {
+        "feature": "num__mean_demand_last_7d_route",
+        "mean_pr_auc_drop": 0.0195463964542141,
+        "std": 0.045172218051675234
+      },
+      {
+        "feature": "cat__route_id_RT-MUM-SUR",
+        "mean_pr_auc_drop": 0.014415433881125766,
+        "std": 0.012425652731124835
+      },
+      {
+        "feature": "num__remaining_capacity_m3",
+        "mean_pr_auc_drop": 0.010929950416736629,
+        "std": 0.013013149741602887
+      }
+    ]
+  },
+  "run3_custom_random_forest": {
+    "parameters": {
+      "n_estimators": 125,
+      "max_depth": null,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": "sqrt",
+      "class_weight": "balanced",
+      "random_state": 42,
+      "n_jobs": 1
+    },
+    "optimal_threshold": 0.19,
+    "validation_metrics_default_th": {
+      "val_th05_pr_auc": 0.32156,
+      "val_th05_roc_auc": 0.89225,
+      "val_th05_brier_score": 0.05637,
+      "val_th05_threshold": 0.5,
+      "val_th05_precision": 0.0,
+      "val_th05_recall": 0.0,
+      "val_th05_f1": 0.0,
+      "val_th05_accuracy": 0.92835,
+      "val_th05_specificity": 1.0,
+      "val_th05_tp": 0,
+      "val_th05_fp": 0,
+      "val_th05_tn": 298,
+      "val_th05_fn": 23,
+      "val_th05_confusion_matrix": [
+        [
+          298,
+          0
+        ],
+        [
+          23,
+          0
+        ]
+      ],
+      "val_th05_total_samples": 321,
+      "val_th05_positive_samples": 23,
+      "val_th05_positive_rate": 0.07165
+    },
+    "validation_metrics_optimal_th": {
+      "val_opt_pr_auc": 0.32156,
+      "val_opt_roc_auc": 0.89225,
+      "val_opt_brier_score": 0.05637,
+      "val_opt_threshold": 0.19,
+      "val_opt_precision": 0.34286,
+      "val_opt_recall": 0.52174,
+      "val_opt_f1": 0.41379,
+      "val_opt_accuracy": 0.89408,
+      "val_opt_specificity": 0.92282,
+      "val_opt_tp": 12,
+      "val_opt_fp": 23,
+      "val_opt_tn": 275,
+      "val_opt_fn": 11,
+      "val_opt_confusion_matrix": [
+        [
+          275,
+          23
+        ],
+        [
+          11,
+          12
+        ]
+      ],
+      "val_opt_total_samples": 321,
+      "val_opt_positive_samples": 23,
+      "val_opt_positive_rate": 0.07165
+    },
+    "test_metrics_default_th": {
+      "test_th05_pr_auc": 0.21577,
+      "test_th05_roc_auc": 0.8614,
+      "test_th05_brier_score": 0.05609,
+      "test_th05_threshold": 0.5,
+      "test_th05_precision": 0.0,
+      "test_th05_recall": 0.0,
+      "test_th05_f1": 0.0,
+      "test_th05_accuracy": 0.93272,
+      "test_th05_specificity": 1.0,
+      "test_th05_tp": 0,
+      "test_th05_fp": 0,
+      "test_th05_tn": 305,
+      "test_th05_fn": 22,
+      "test_th05_confusion_matrix": [
+        [
+          305,
+          0
+        ],
+        [
+          22,
+          0
+        ]
+      ],
+      "test_th05_total_samples": 327,
+      "test_th05_positive_samples": 22,
+      "test_th05_positive_rate": 0.06728
+    },
+    "test_metrics_optimal_th": {
+      "test_opt_pr_auc": 0.21577,
+      "test_opt_roc_auc": 0.8614,
+      "test_opt_brier_score": 0.05609,
+      "test_opt_threshold": 0.19,
+      "test_opt_precision": 0.2,
+      "test_opt_recall": 0.36364,
+      "test_opt_f1": 0.25806,
+      "test_opt_accuracy": 0.85933,
+      "test_opt_specificity": 0.89508,
+      "test_opt_tp": 8,
+      "test_opt_fp": 32,
+      "test_opt_tn": 273,
+      "test_opt_fn": 14,
+      "test_opt_confusion_matrix": [
+        [
+          273,
+          32
+        ],
+        [
+          14,
+          8
+        ]
+      ],
+      "test_opt_total_samples": 327,
+      "test_opt_positive_samples": 22,
+      "test_opt_positive_rate": 0.06728
+    },
+    "top_features_tree_mdi": [
+      {
+        "feature": "num__capacity_bottleneck_ratio",
+        "importance": 0.1909447844921845
+      },
+      {
+        "feature": "num__avg_unit_weight_kg",
+        "importance": 0.13561702409935508
+      },
+      {
+        "feature": "num__weight_fill_ratio",
+        "importance": 0.08136073298625725
+      },
+      {
+        "feature": "num__volume_fill_ratio",
+        "importance": 0.0771438104588275
+      },
+      {
+        "feature": "num__candidate_total_qty",
+        "importance": 0.0764616378844674
+      },
+      {
+        "feature": "num__cargo_density_kg_m3",
+        "importance": 0.0705835769291777
+      },
+      {
+        "feature": "num__projected_volume_util_pct",
+        "importance": 0.062287266528812744
+      },
+      {
+        "feature": "num__projected_weight_util_pct",
+        "importance": 0.0582646196580504
+      },
+      {
+        "feature": "num__candidate_added_weight_kg",
+        "importance": 0.044901404275376394
+      },
+      {
+        "feature": "num__candidate_added_volume_m3",
+        "importance": 0.028402147542978734
+      }
+    ],
+    "top_features_permutation_val": [
+      {
+        "feature": "num__cargo_density_kg_m3",
+        "mean_pr_auc_drop": 0.05123446657660271,
+        "std": 0.03808649524709714
+      },
+      {
+        "feature": "num__projected_weight_util_pct",
+        "mean_pr_auc_drop": 0.04284486637771909,
+        "std": 0.021446658039054035
+      },
+      {
+        "feature": "num__projected_volume_util_pct",
+        "mean_pr_auc_drop": 0.028903043664801148,
+        "std": 0.019588782332009853
+      },
+      {
+        "feature": "num__weight_fill_ratio",
+        "mean_pr_auc_drop": 0.023102703495181776,
+        "std": 0.02122285605664827
+      },
+      {
+        "feature": "num__candidate_added_weight_kg",
+        "mean_pr_auc_drop": 0.023056881210271718,
+        "std": 0.019675295202934606
+      },
+      {
+        "feature": "cat__day_of_week_5",
+        "mean_pr_auc_drop": 0.022968133933108155,
+        "std": 0.007818524133109907
+      },
+      {
+        "feature": "num__volume_fill_ratio",
+        "mean_pr_auc_drop": 0.02292320851432673,
+        "std": 0.021021517799459117
+      },
+      {
+        "feature": "num__avg_unit_weight_kg",
+        "mean_pr_auc_drop": 0.02267767644178772,
+        "std": 0.026469221871291967
+      },
+      {
+        "feature": "num__remaining_capacity_m3",
+        "mean_pr_auc_drop": 0.019623766294638006,
+        "std": 0.013921320357755236
+      },
+      {
+        "feature": "num__capacity_bottleneck_ratio",
+        "mean_pr_auc_drop": 0.019184806061390634,
+        "std": 0.034897905566452614
+      }
+    ]
+  },
+  "comparison_summary": {
+    "val_pr_auc_gain": 0.01733,
+    "val_roc_auc_gain": 0.01393,
+    "test_pr_auc_diff": -0.00752,
+    "test_roc_auc_diff": -0.00015,
+    "test_brier_score_reduction": 0.01504,
+    "test_brier_score_relative_pct": 21.14,
+    "test_false_positive_reduction_count": 13
+  }
+}
