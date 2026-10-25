@@ -1,0 +1,26 @@
+{
+  "model_name": "Custom GaussianNB",
+  "feature_subset": "decorrelated_physical_4",
+  "n_features": 4,
+  "features": [
+    "num__projected_weight_util_pct",
+    "num__candidate_total_qty",
+    "num__candidate_added_weight_kg",
+    "num__n_candidate_skus"
+  ],
+  "feature_description": "4 non-redundant core physical features addressing severe weight/volume multicollinearity",
+  "feature_indices": [
+    4,
+    7,
+    2,
+    6
+  ],
+  "var_smoothing": 0.001,
+  "priors_type": "empirical",
+  "priors": null,
+  "optimal_threshold": 0.9199999999999999,
+  "val_pr_auc": 0.34437,
+  "val_roc_auc": 0.84097,
+  "val_f1_opt": 0.32184,
+  "val_brier_score": 0.29855
+}

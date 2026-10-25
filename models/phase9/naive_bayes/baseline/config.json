@@ -1,0 +1,51 @@
+{
+  "model_name": "Baseline GaussianNB",
+  "feature_set": "14 shared Phase 8 baseline features",
+  "n_features": 31,
+  "features": [
+    "num__remaining_capacity_kg",
+    "num__remaining_capacity_m3",
+    "num__candidate_added_weight_kg",
+    "num__candidate_added_volume_m3",
+    "num__projected_weight_util_pct",
+    "num__projected_volume_util_pct",
+    "num__n_candidate_skus",
+    "num__candidate_total_qty",
+    "num__mean_demand_last_7d_route",
+    "num__route_transit_hours",
+    "num__days_into_simulation",
+    "cat__truck_type_14ft LCV",
+    "cat__truck_type_20ft ICV",
+    "cat__truck_type_24ft MCV",
+    "cat__route_id_RT-MUM-AMD",
+    "cat__route_id_RT-MUM-BLR",
+    "cat__route_id_RT-MUM-BRD",
+    "cat__route_id_RT-MUM-GOA",
+    "cat__route_id_RT-MUM-HYD",
+    "cat__route_id_RT-MUM-IND",
+    "cat__route_id_RT-MUM-NAG",
+    "cat__route_id_RT-MUM-NSK",
+    "cat__route_id_RT-MUM-PUN",
+    "cat__route_id_RT-MUM-SUR",
+    "cat__day_of_week_0",
+    "cat__day_of_week_1",
+    "cat__day_of_week_2",
+    "cat__day_of_week_3",
+    "cat__day_of_week_4",
+    "cat__day_of_week_5",
+    "cat__day_of_week_6"
+  ],
+  "hyperparameters": {
+    "priors": null,
+    "var_smoothing": 1e-09
+  },
+  "classes": [
+    0,
+    1
+  ],
+  "class_prior": [
+    0.9080234833659491,
+    0.09197651663405088
+  ],
+  "optimal_threshold": 0.8999999999999999
+}

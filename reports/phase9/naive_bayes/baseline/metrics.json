@@ -1,0 +1,194 @@
+{
+  "experiment": "Phase 9: Baseline Gaussian Naive Bayes",
+  "phase": "Phase 9",
+  "algorithm": "GaussianNB",
+  "feature_set": "14 shared Phase 8 baseline features",
+  "preprocessor_source": "models/phase8_preprocessor.joblib",
+  "hyperparameters": {
+    "priors": null,
+    "var_smoothing": 1e-09
+  },
+  "classes": [
+    0,
+    1
+  ],
+  "class_prior": [
+    0.9080234833659491,
+    0.09197651663405088
+  ],
+  "optimal_threshold": 0.8999999999999999,
+  "validation_metrics_default_th": {
+    "val_th05_pr_auc": 0.22389,
+    "val_th05_roc_auc": 0.85731,
+    "val_th05_brier_score": 0.2599,
+    "val_th05_threshold": 0.5,
+    "val_th05_precision": 0.21495,
+    "val_th05_recall": 1.0,
+    "val_th05_f1": 0.35385,
+    "val_th05_accuracy": 0.73832,
+    "val_th05_specificity": 0.71812,
+    "val_th05_tp": 23,
+    "val_th05_fp": 84,
+    "val_th05_tn": 214,
+    "val_th05_fn": 0,
+    "val_th05_confusion_matrix": [
+      [
+        214,
+        84
+      ],
+      [
+        0,
+        23
+      ]
+    ],
+    "val_th05_total_samples": 321,
+    "val_th05_positive_samples": 23,
+    "val_th05_positive_rate": 0.07165
+  },
+  "validation_metrics_optimal_th": {
+    "val_opt_pr_auc": 0.22389,
+    "val_opt_roc_auc": 0.85731,
+    "val_opt_brier_score": 0.2599,
+    "val_opt_threshold": 0.9,
+    "val_opt_precision": 0.21698,
+    "val_opt_recall": 1.0,
+    "val_opt_f1": 0.35659,
+    "val_opt_accuracy": 0.74143,
+    "val_opt_specificity": 0.72148,
+    "val_opt_tp": 23,
+    "val_opt_fp": 83,
+    "val_opt_tn": 215,
+    "val_opt_fn": 0,
+    "val_opt_confusion_matrix": [
+      [
+        215,
+        83
+      ],
+      [
+        0,
+        23
+      ]
+    ],
+    "val_opt_total_samples": 321,
+    "val_opt_positive_samples": 23,
+    "val_opt_positive_rate": 0.07165
+  },
+  "test_metrics_default_th": {
+    "test_th05_pr_auc": 0.27382,
+    "test_th05_roc_auc": 0.84739,
+    "test_th05_brier_score": 0.26064,
+    "test_th05_threshold": 0.5,
+    "test_th05_precision": 0.2037,
+    "test_th05_recall": 1.0,
+    "test_th05_f1": 0.33846,
+    "test_th05_accuracy": 0.737,
+    "test_th05_specificity": 0.71803,
+    "test_th05_tp": 22,
+    "test_th05_fp": 86,
+    "test_th05_tn": 219,
+    "test_th05_fn": 0,
+    "test_th05_confusion_matrix": [
+      [
+        219,
+        86
+      ],
+      [
+        0,
+        22
+      ]
+    ],
+    "test_th05_total_samples": 327,
+    "test_th05_positive_samples": 22,
+    "test_th05_positive_rate": 0.06728
+  },
+  "test_metrics_optimal_th": {
+    "test_opt_pr_auc": 0.27382,
+    "test_opt_roc_auc": 0.84739,
+    "test_opt_brier_score": 0.26064,
+    "test_opt_threshold": 0.9,
+    "test_opt_precision": 0.2,
+    "test_opt_recall": 0.95455,
+    "test_opt_f1": 0.33071,
+    "test_opt_accuracy": 0.74006,
+    "test_opt_specificity": 0.72459,
+    "test_opt_tp": 21,
+    "test_opt_fp": 84,
+    "test_opt_tn": 221,
+    "test_opt_fn": 1,
+    "test_opt_confusion_matrix": [
+      [
+        221,
+        84
+      ],
+      [
+        1,
+        21
+      ]
+    ],
+    "test_opt_total_samples": 327,
+    "test_opt_positive_samples": 22,
+    "test_opt_positive_rate": 0.06728
+  },
+  "top_features": [
+    {
+      "feature": "num__projected_weight_util_pct",
+      "importance": 1.0737737513303758
+    },
+    {
+      "feature": "num__projected_volume_util_pct",
+      "importance": 1.0534681355049578
+    },
+    {
+      "feature": "num__candidate_total_qty",
+      "importance": 0.46238735160569905
+    },
+    {
+      "feature": "num__candidate_added_weight_kg",
+      "importance": 0.4086762099262637
+    },
+    {
+      "feature": "num__n_candidate_skus",
+      "importance": 0.36361022940976245
+    },
+    {
+      "feature": "num__candidate_added_volume_m3",
+      "importance": 0.29983733046011923
+    },
+    {
+      "feature": "num__mean_demand_last_7d_route",
+      "importance": 0.142177176007211
+    },
+    {
+      "feature": "cat__truck_type_14ft LCV",
+      "importance": 0.1171346812219365
+    },
+    {
+      "feature": "cat__day_of_week_1",
+      "importance": 0.1102975908090495
+    },
+    {
+      "feature": "cat__truck_type_20ft ICV",
+      "importance": 0.11018254919619815
+    },
+    {
+      "feature": "cat__day_of_week_0",
+      "importance": 0.10855533509692677
+    },
+    {
+      "feature": "cat__day_of_week_2",
+      "importance": 0.09032263493125677
+    },
+    {
+      "feature": "num__remaining_capacity_kg",
+      "importance": 0.08310140417850648
+    },
+    {
+      "feature": "num__remaining_capacity_m3",
+      "importance": 0.08134283353078084
+    },
+    {
+      "feature": "num__route_transit_hours",
+      "importance": 0.0804229283312413
+    }
+  ]
+}
