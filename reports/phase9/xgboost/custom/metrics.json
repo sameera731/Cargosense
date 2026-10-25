@@ -1,0 +1,195 @@
+{
+  "experiment": "Run 4: Custom XGBoost",
+  "phase": "Phase 9",
+  "owner": "Member 2",
+  "feature_set": "18 features (14 baseline + 4 engineered physical ratio features)",
+  "preprocessor_source": "models/phase9/xgboost/custom/preprocessor.joblib",
+  "hyperparameters": {
+    "n_estimators": 52,
+    "max_depth": 5,
+    "learning_rate": 0.08,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "min_child_weight": 1,
+    "reg_lambda": 1.0,
+    "objective": "binary:logistic",
+    "eval_metric": "aucpr",
+    "scale_pos_weight": 9.872340425531915,
+    "random_state": 42
+  },
+  "optimal_threshold": 0.4799999999999999,
+  "validation_metrics_default_th": {
+    "val_th05_pr_auc": 0.38672,
+    "val_th05_roc_auc": 0.89437,
+    "val_th05_brier_score": 0.07512,
+    "val_th05_threshold": 0.5,
+    "val_th05_precision": 0.30769,
+    "val_th05_recall": 0.52174,
+    "val_th05_f1": 0.3871,
+    "val_th05_accuracy": 0.88162,
+    "val_th05_specificity": 0.9094,
+    "val_th05_tp": 12,
+    "val_th05_fp": 27,
+    "val_th05_tn": 271,
+    "val_th05_fn": 11,
+    "val_th05_confusion_matrix": [
+      [
+        271,
+        27
+      ],
+      [
+        11,
+        12
+      ]
+    ],
+    "val_th05_total_samples": 321,
+    "val_th05_positive_samples": 23,
+    "val_th05_positive_rate": 0.07165
+  },
+  "validation_metrics_optimal_th": {
+    "val_opt_pr_auc": 0.38672,
+    "val_opt_roc_auc": 0.89437,
+    "val_opt_brier_score": 0.07512,
+    "val_opt_threshold": 0.48,
+    "val_opt_precision": 0.32558,
+    "val_opt_recall": 0.6087,
+    "val_opt_f1": 0.42424,
+    "val_opt_accuracy": 0.88162,
+    "val_opt_specificity": 0.90268,
+    "val_opt_tp": 14,
+    "val_opt_fp": 29,
+    "val_opt_tn": 269,
+    "val_opt_fn": 9,
+    "val_opt_confusion_matrix": [
+      [
+        269,
+        29
+      ],
+      [
+        9,
+        14
+      ]
+    ],
+    "val_opt_total_samples": 321,
+    "val_opt_positive_samples": 23,
+    "val_opt_positive_rate": 0.07165
+  },
+  "test_metrics_default_th": {
+    "test_th05_pr_auc": 0.2519,
+    "test_th05_roc_auc": 0.85961,
+    "test_th05_brier_score": 0.08118,
+    "test_th05_threshold": 0.5,
+    "test_th05_precision": 0.21622,
+    "test_th05_recall": 0.36364,
+    "test_th05_f1": 0.27119,
+    "test_th05_accuracy": 0.8685,
+    "test_th05_specificity": 0.90492,
+    "test_th05_tp": 8,
+    "test_th05_fp": 29,
+    "test_th05_tn": 276,
+    "test_th05_fn": 14,
+    "test_th05_confusion_matrix": [
+      [
+        276,
+        29
+      ],
+      [
+        14,
+        8
+      ]
+    ],
+    "test_th05_total_samples": 327,
+    "test_th05_positive_samples": 22,
+    "test_th05_positive_rate": 0.06728
+  },
+  "test_metrics_optimal_th": {
+    "test_opt_pr_auc": 0.2519,
+    "test_opt_roc_auc": 0.85961,
+    "test_opt_brier_score": 0.08118,
+    "test_opt_threshold": 0.48,
+    "test_opt_precision": 0.21951,
+    "test_opt_recall": 0.40909,
+    "test_opt_f1": 0.28571,
+    "test_opt_accuracy": 0.86239,
+    "test_opt_specificity": 0.89508,
+    "test_opt_tp": 9,
+    "test_opt_fp": 32,
+    "test_opt_tn": 273,
+    "test_opt_fn": 13,
+    "test_opt_confusion_matrix": [
+      [
+        273,
+        32
+      ],
+      [
+        13,
+        9
+      ]
+    ],
+    "test_opt_total_samples": 327,
+    "test_opt_positive_samples": 22,
+    "test_opt_positive_rate": 0.06728
+  },
+  "top_features": [
+    {
+      "feature": "num__candidate_total_qty",
+      "importance": 0.14943353831768036
+    },
+    {
+      "feature": "num__avg_unit_weight_kg",
+      "importance": 0.13585887849330902
+    },
+    {
+      "feature": "num__projected_weight_util_pct",
+      "importance": 0.080413818359375
+    },
+    {
+      "feature": "num__projected_volume_util_pct",
+      "importance": 0.07051350176334381
+    },
+    {
+      "feature": "num__weight_fill_ratio",
+      "importance": 0.04324426129460335
+    },
+    {
+      "feature": "num__volume_fill_ratio",
+      "importance": 0.039548009634017944
+    },
+    {
+      "feature": "cat__day_of_week_1",
+      "importance": 0.03536376729607582
+    },
+    {
+      "feature": "cat__route_id_RT-MUM-HYD",
+      "importance": 0.03477785363793373
+    },
+    {
+      "feature": "cat__day_of_week_6",
+      "importance": 0.030947860330343246
+    },
+    {
+      "feature": "cat__day_of_week_2",
+      "importance": 0.03003663942217827
+    },
+    {
+      "feature": "num__remaining_capacity_m3",
+      "importance": 0.028349770233035088
+    },
+    {
+      "feature": "cat__day_of_week_3",
+      "importance": 0.026820624247193336
+    },
+    {
+      "feature": "cat__route_id_RT-MUM-PUN",
+      "importance": 0.026324830949306488
+    },
+    {
+      "feature": "num__route_transit_hours",
+      "importance": 0.02584836445748806
+    },
+    {
+      "feature": "cat__truck_type_20ft ICV",
+      "importance": 0.02453705109655857
+    }
+  ]
+}

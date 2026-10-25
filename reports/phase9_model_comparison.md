@@ -5,10 +5,10 @@
 **Collaborator & Reviewer:** Sameera (Member 1 — Random Forest Lead)  
 **Date:** October 2026  
 **Input Datasets:** `data/processed/phase8_train.csv`, `data/processed/phase8_val.csv`, `data/processed/phase8_test.csv`  
-**Serialized Models:** `models/phase9_xgboost_baseline.joblib`, `models/phase9_xgboost_custom.joblib`  
-**Serialized Preprocessors:** `models/phase8_preprocessor.joblib`, `models/phase9_custom_preprocessor.joblib`  
-**Structured Metrics:** `models/phase9_xgboost_metrics.json`  
-**Predictions:** `data/processed/phase9_run2_baseline_test_preds.csv`, `data/processed/phase9_run4_custom_test_preds.csv`  
+**Serialized Models:** `models/phase9/xgboost/baseline/model.joblib`, `models/phase9/xgboost/custom/model.joblib`  
+**Serialized Preprocessors:** `models/phase8_preprocessor.joblib`, `models/phase9/xgboost/custom/preprocessor.joblib`  
+**Structured Metrics:** `reports/phase9/xgboost/baseline/metrics.json`, `reports/phase9/xgboost/custom/metrics.json`  
+**Predictions:** `reports/phase9/xgboost/baseline/predictions.csv`, `reports/phase9/xgboost/custom/predictions.csv`  
 
 ---
 
@@ -207,15 +207,17 @@ All generated files adhere to project paths:
 
 | Artifact Type | Path | Purpose |
 |:---|:---|:---|
-| **Baseline Model** | `models/phase9_xgboost_baseline.joblib` | Serialized Run 2 fitted XGBoost model |
-| **Custom Model** | `models/phase9_xgboost_custom.joblib` | Serialized Run 4 fitted XGBoost model |
-| **Custom Preprocessor** | `models/phase9_custom_preprocessor.joblib` | Serialized 35-feature `ColumnTransformer` |
-| **Metrics Summary** | `models/phase9_xgboost_metrics.json` | Complete structured metrics, parameters, and top features |
-| **Run 2 Val Predictions** | `data/processed/phase9_run2_baseline_val_preds.csv` | Validation predicted probabilities & classes |
-| **Run 2 Test Predictions** | `data/processed/phase9_run2_baseline_test_preds.csv` | Held-out test predicted probabilities & classes |
-| **Run 4 Val Predictions** | `data/processed/phase9_run4_custom_val_preds.csv` | Validation predicted probabilities & classes |
-| **Run 4 Test Predictions** | `data/processed/phase9_run4_custom_test_preds.csv` | Held-out test predicted probabilities & classes |
-| **Pipeline Script** | `src/models/xgboost_model.py` | Complete runnable training and evaluation code |
+| **Baseline Model** | `models/phase9/xgboost/baseline/model.joblib` | Serialized Run 2 fitted XGBoost model |
+| **Custom Model** | `models/phase9/xgboost/custom/model.joblib` | Serialized Run 4 fitted XGBoost model |
+| **Custom Preprocessor** | `models/phase9/xgboost/custom/preprocessor.joblib` | Serialized 35-feature `ColumnTransformer` |
+| **Baseline Metrics** | `reports/phase9/xgboost/baseline/metrics.json` | Baseline metrics, parameters, and top features |
+| **Custom Metrics** | `reports/phase9/xgboost/custom/metrics.json` | Custom metrics, parameters, and top features |
+| **Run 2 Baseline Predictions** | `reports/phase9/xgboost/baseline/predictions.csv` | Baseline held-out test predictions & probabilities |
+| **Run 4 Custom Predictions** | `reports/phase9/xgboost/custom/predictions.csv` | Custom held-out test predictions & probabilities |
+| **Baseline Pipeline Script** | `src/phase9/xgboost/baseline/train.py` | Complete runnable baseline training and evaluation |
+| **Custom Pipeline Script** | `src/phase9/xgboost/custom/train.py` | Complete runnable custom training and evaluation |
+| **Baseline Report** | `reports/phase9/xgboost/baseline/report.md` | Dedicated Baseline XGBoost evaluation report |
+| **Custom Report** | `reports/phase9/xgboost/custom/report.md` | Dedicated Custom XGBoost evaluation report |
 | **Evaluation Module** | `src/models/evaluation.py` | Standardized metrics and visualization functions |
 | **Jupyter Notebook** | `notebooks/phase9_xgboost.ipynb` | Executed end-to-end interactive notebook with visualizations |
 | **PR Curves Plot** | `reports/figures/fig12_run2_run4_pr_curves.png` | Diagnostic PR curves comparing Run 2 vs Run 4 |
@@ -239,8 +241,13 @@ To ensure consistency when comparing Random Forest (Runs 1 & 3) against XGBoost 
 3. **Primary Benchmark Target**:
    - XGBoost Custom achieved held-out test **PR-AUC of 0.2519** and **ROC-AUC of 0.8596** with a Brier score of **0.0812**.
    - Compare Random Forest's variance-reduction bagging properties against XGBoost's sequential residual optimization on these same held-out candidates.
-4. **Reproduction Command**:
-   ```bash
-   python -m src.models.xgboost_model
-   ```
-   This will reproduce all XGBoost models, metrics, predictions, and figures in under 15 seconds.
+4. **Reproduction Commands**:
+   - **Baseline XGBoost:**
+     ```bash
+     python -m src.phase9.xgboost.baseline.train
+     ```
+   - **Custom XGBoost:**
+     ```bash
+     python -m src.phase9.xgboost.custom.train
+     ```
+   Both scripts execute independently from the repository root in under 5 seconds.
