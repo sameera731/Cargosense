@@ -1,17 +1,17 @@
 """
-CargoSense — Phase 9: Gaussian Naive Bayes Experiment
-Model: Gaussian Naive Bayes (GaussianNB)
+CargoSense — Phase 9: Baseline Gaussian Naive Bayes Classifier
+Model: Gaussian Naive Bayes (Baseline)
 Feature Set: 14 Shared Phase 8 Baseline Features (11 Numerical, 3 Categorical)
 Preprocessor: Shared Phase 8 Preprocessor (models/phase8_preprocessor.joblib)
 
-This module implements Gaussian Naive Bayes as an additional Phase 9 benchmark:
+This module implements the Baseline Gaussian Naive Bayes experiment:
   - Reuses the existing chronological, shipment-grouped partitions from Phase 8.
   - Excludes candidate_strategy, surrogate IDs, and post-cutoff operational metrics.
   - Transforms inputs via the pre-fitted Phase 8 ColumnTransformer pipeline.
-  - Fits GaussianNB using default hyperparameters without data resampling or artificial priors.
-  - Evaluates performance using standard PR-AUC, ROC-AUC, F1, Precision, Recall, and Confusion Matrices.
+  - Fits GaussianNB using default hyperparameters (var_smoothing=1e-9, empirical priors).
+  - Evaluates performance using standard PR-AUC, ROC-AUC, F1, Precision, Recall, Accuracy, Brier score.
   - Employs validation-based threshold optimization (freezing the threshold before evaluating held-out test data).
-  - Saves artifacts and diagnostic figures strictly to models/phase9/naive_bayes/ and reports/phase9/naive_bayes/.
+  - Saves artifacts and diagnostic figures strictly to models/phase9/naive_bayes/baseline/ and reports/phase9/naive_bayes/baseline/.
 """
 
 import argparse
@@ -21,7 +21,7 @@ from pathlib import Path
 from typing import Dict, Any, Tuple
 
 # Set up project root (works when invoked directly or via python -m)
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path(__file__).resolve().parents[4]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
@@ -36,6 +36,7 @@ from src.models.evaluation import (
     plot_pr_curves,
     plot_roc_curves,
     plot_confusion_matrices,
+    plot_feature_importances,
     plot_calibration_curves
 )
 
@@ -43,8 +44,8 @@ from src.models.evaluation import (
 DATA_DIR = PROJECT_ROOT / "data" / "processed"
 SHARED_PREPROCESSOR_PATH = PROJECT_ROOT / "models" / "phase8_preprocessor.joblib"
 
-OUTPUT_MODEL_DIR = PROJECT_ROOT / "models" / "phase9" / "naive_bayes"
-OUTPUT_REPORT_DIR = PROJECT_ROOT / "reports" / "phase9" / "naive_bayes"
+OUTPUT_MODEL_DIR = PROJECT_ROOT / "models" / "phase9" / "naive_bayes" / "baseline"
+OUTPUT_REPORT_DIR = PROJECT_ROOT / "reports" / "phase9" / "naive_bayes" / "baseline"
 OUTPUT_FIGURES_DIR = OUTPUT_REPORT_DIR / "figures"
 
 # 14 Approved Baseline Features from Phase 8
@@ -157,11 +158,33 @@ def load_and_validate_datasets() -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFra
     return train_df, val_df, test_df
 
 
-def generate_naive_bayes_report(
+def compute_gaussian_feature_importance(model: GaussianNB, feature_names: list) -> pd.DataFrame:
+    """
+    Compute standardized class mean separation (Cohen's d) for GaussianNB.
+    Quantifies feature discriminative separation between converted (1) and non-converted (0) opportunities:
+        d_j = |mu_1j - mu_0j| / sqrt(0.5 * (sigma_1j^2 + sigma_0j^2))
+    """
+    mu_0 = model.theta_[0, :]
+    mu_1 = model.theta_[1, :]
+    var_0 = model.var_[0, :]
+    var_1 = model.var_[1, :]
+
+    pooled_std = np.sqrt(0.5 * (var_0 + var_1))
+    mean_separation = np.abs(mu_1 - mu_0) / np.maximum(pooled_std, 1e-8)
+
+    df = pd.DataFrame({
+        "feature": feature_names,
+        "importance": mean_separation
+    }).sort_values("importance", ascending=False).reset_index(drop=True)
+    return df
+
+
+def generate_baseline_report(
     metrics_summary: Dict[str, Any],
+    importance_df: pd.DataFrame,
     output_path: Path
 ) -> None:
-    """Generate comprehensive Markdown evaluation report for Gaussian Naive Bayes experiment."""
+    """Generate comprehensive Markdown evaluation report for Baseline Gaussian Naive Bayes."""
     val_opt = metrics_summary["validation_metrics_optimal_th"]
     test_opt = metrics_summary["test_metrics_optimal_th"]
     val_dft = metrics_summary["validation_metrics_default_th"]
@@ -169,67 +192,55 @@ def generate_naive_bayes_report(
     params = metrics_summary["hyperparameters"]
     opt_th = metrics_summary["optimal_threshold"]
 
-    content = f"""# CargoSense — Phase 9: Gaussian Naive Bayes Evaluation Report
+    top_feat_table = "\n".join([
+        f"| {idx+1} | `{row['feature']}` | {row['importance']:.4f} |"
+        for idx, row in importance_df.head(10).iterrows()
+    ])
+
+    content = f"""# CargoSense — Phase 9: Baseline Gaussian Naive Bayes Evaluation Report
 
 **Model:** Gaussian Naive Bayes (`sklearn.naive_bayes.GaussianNB`)  
-**Feature Set:** 14 Approved Shared Baseline Features (11 Numerical, 3 Categorical)  
-**Input Dimension:** 31 Transformed Features (via `models/phase8_preprocessor.joblib`)  
+**Experiment:** Baseline GaussianNB (14 Shared Phase 8 Features, 31 Encoded Dims)  
+**Preprocessor:** Shared Phase 8 Preprocessor (`models/phase8_preprocessor.joblib`)  
 **Target Variable:** `{TARGET_COLUMN}` (Binary: 1 = Became FTL, 0 = Did Not Convert)  
-**Decision Thresholds:** Default $\\theta = 0.50$ | Validation-Optimized $\\theta^* = {opt_th:.4f}$  
+**Operating Thresholds:** Default $\\theta = 0.50$ | Validation-Optimized $\\theta^* = {opt_th:.4f}$  
 
 ---
 
 ## 1. Executive Summary
 
-This report documents the implementation and empirical evaluation of **Gaussian Naive Bayes (GaussianNB)** as an additional benchmark classifier for the CargoSense Opportunity Detection Engine (ODE) in Phase 9.
+This report documents the implementation and evaluation of **Baseline Gaussian Naive Bayes** for Phase 9 of the CargoSense Opportunity Detection Engine (ODE).
 
-Under the project plan, Member 2 owns XGBoost (Runs 2 & 4) and Sameera owns Random Forest (Runs 1 & 3). Gaussian Naive Bayes serves as a complementary parametric probabilistic baseline to evaluate how a simple generative model with strong independence assumptions behaves on operational logistics data.
+Gaussian Naive Bayes serves as a classical probabilistic generative benchmark. It assumes that features are conditionally independent given the FTL outcome class and follow class-conditional univariate Gaussian distributions.
 
-### Key Performance Findings:
-- **Held-Out Test PR-AUC:** **{test_opt['test_opt_pr_auc']:.4f}** (vs. 0.1903 baseline XGBoost, and 6.73% random prevalence)
-- **Held-Out Test ROC-AUC:** **{test_opt['test_opt_roc_auc']:.4f}** (vs. 0.8273 baseline XGBoost)
+### Key Performance Metrics:
+- **Held-Out Test PR-AUC:** **{test_opt['test_opt_pr_auc']:.4f}** (vs. 6.73% random baseline prevalence)
+- **Held-Out Test ROC-AUC:** **{test_opt['test_opt_roc_auc']:.4f}**
 - **Test Precision @ $\\theta=0.50$:** **{test_dft['test_th05_precision']:.2%}** ({test_dft['test_th05_tp']}/{test_dft['test_th05_tp'] + test_dft['test_th05_fp']} predictions)
 - **Test Recall @ $\\theta=0.50$:** **{test_dft['test_th05_recall']:.2%}** ({test_dft['test_th05_tp']}/{test_dft['test_th05_positive_samples']} positives identified)
 - **Test F1-Score @ $\\theta=0.50$:** **{test_dft['test_th05_f1']:.4f}**
 - **Test Precision @ $\\theta^*={opt_th:.2f}$:** **{test_opt['test_opt_precision']:.2%}** ({test_opt['test_opt_tp']}/{test_opt['test_opt_tp'] + test_opt['test_opt_fp']} predictions)
 - **Test Recall @ $\\theta^*={opt_th:.2f}$:** **{test_opt['test_opt_recall']:.2%}** ({test_opt['test_opt_tp']}/{test_opt['test_opt_positive_samples']} positives identified)
 - **Test F1-Score @ $\\theta^*={opt_th:.2f}$:** **{test_opt['test_opt_f1']:.4f}**
-- **Test Brier Score:** **{test_opt['test_opt_brier_score']:.4f}** (vs. 0.1363 baseline XGBoost and 0.0812 custom XGBoost)
+- **Test Brier Score:** **{test_opt['test_opt_brier_score']:.4f}**
 
 ---
 
 ## 2. Theoretical Assumptions & Operational Limitations
 
-Gaussian Naive Bayes relies on two core mathematical assumptions that are fundamentally violated by operational freight consolidation data:
+Gaussian Naive Bayes relies on two mathematical assumptions that conflict with operational logistics data:
 
-### 2.1 Conditional Independence Assumption
-GaussianNB assumes that all 31 input features are conditionally independent given the class label $Y \\in \\{{0, 1\\}}$:
-$$P(X_1, X_2, \\dots, X_d \\mid Y = c) = \\prod_{{i=1}}^d P(X_i \\mid Y = c)$$
+1. **Conditional Independence**:
+   GaussianNB assumes features are conditionally independent:
+   $$P(X_1, \\dots, X_d \\mid Y = c) = \\prod_{{i=1}}^d P(X_i \\mid Y = c)$$
+   In freight consolidation, weight, volume, pieces, and utilization percentages are strongly correlated. Multiplying likelihoods across 31 features results in redundant evidence overcounting, pushing posterior probabilities to extreme values (high Brier score of {test_opt['test_opt_brier_score']:.4f}).
 
-**Operational Reality & Impact:**
-In freight operations, features exhibit strong structural multicollinearity:
-1. `candidate_added_weight_kg` and `candidate_added_volume_m3` are physically correlated via cargo density.
-2. `remaining_capacity_kg` and `remaining_capacity_m3` correlate with the assigned truck chassis.
-3. `projected_weight_util_pct` and `projected_volume_util_pct` are deterministic functions of remaining capacity and candidate cargo.
-4. `candidate_total_qty` and `candidate_added_weight_kg` correlate strongly with shipment scale.
-
-Because evidence is assumed independent, multiplying class-conditional likelihoods over 31 features leads to **redundant evidence multiplication**. This causes the posterior probabilities to become artificially polarized towards 0 or 1, resulting in poor probability calibration (**Brier score of {test_opt['test_opt_brier_score']:.4f}**).
-
-### 2.2 Univariate Gaussian Likelihood Assumption
-GaussianNB models continuous features within each class using a univariate Gaussian distribution:
-$$P(X_i \\mid Y = c) = \\frac{{1}}{{\\sqrt{{2\\pi\\sigma_{{ci}}^2}}}} \\exp\\left(-\\frac{{(x_i - \\mu_{{ci}})^2}}{{2\\sigma_{{ci}}^2}}\\right)$$
-
-**Operational Reality & Impact:**
-Physical logistics variables have bounded, non-Gaussian distributions:
-- `projected_weight_util_pct` and `projected_volume_util_pct` are bounded percentages with sharp spikes near the 85% FTL threshold.
-- `remaining_capacity` and piece counts are strictly non-negative, right-skewed counts and masses.
-- One-hot encoded categorical indicator columns (such as routes and truck types) are discrete binary variables, for which continuous Gaussian density modeling is technically misspecified (despite StandardScaler centering).
+2. **Univariate Gaussian Distribution**:
+   Bounded operational metrics (utilization percentages capped near 85–100%, non-negative piece counts, one-hot encoded route indicators) deviate significantly from continuous unbounded normal distributions.
 
 ---
 
 ## 3. Detailed Performance Across Splits
-
-### 3.1 Evaluation Metrics Table
 
 | Metric | Validation Set (Default $\\theta=0.50$) | Validation Set (Optimal $\\theta={opt_th:.2f}$) | Test Set (Default $\\theta=0.50$) | Test Set (Optimal $\\theta={opt_th:.2f}$) |
 |:---|:---:|:---:|:---:|:---:|
@@ -243,81 +254,44 @@ Physical logistics variables have bounded, non-Gaussian distributions:
 | **Brier Score** | {val_dft['val_th05_brier_score']:.4f} | {val_opt['val_opt_brier_score']:.4f} | {test_dft['test_th05_brier_score']:.4f} | {test_opt['test_opt_brier_score']:.4f} |
 | **Positive Predictions Count** | {val_dft['val_th05_tp'] + val_dft['val_th05_fp']} | {val_opt['val_opt_tp'] + val_opt['val_opt_fp']} | {test_dft['test_th05_tp'] + test_dft['test_th05_fp']} | {test_opt['test_opt_tp'] + test_opt['test_opt_fp']} |
 
-### 3.2 Test Set Confusion Matrices
-
-#### Default Threshold ($\theta = 0.50$):
-```
-                  Predicted Negative    Predicted Positive
-Actual Negative          {test_dft['test_th05_tn']:<12}         {test_dft['test_th05_fp']:<12}    (Specificity: {test_dft['test_th05_specificity']:.1%})
-Actual Positive          {test_dft['test_th05_fn']:<12}         {test_dft['test_th05_tp']:<12}    (Recall: {test_dft['test_th05_recall']:.1%})
-Total Test: 327 | Precision: {test_dft['test_th05_precision']:.1%} | Accuracy: {test_dft['test_th05_accuracy']:.1%}
-```
-
-#### Validation-Optimized Threshold ($\theta^* = {opt_th:.2f}$):
-```
-                  Predicted Negative    Predicted Positive
-Actual Negative          {test_opt['test_opt_tn']:<12}         {test_opt['test_opt_fp']:<12}    (Specificity: {test_opt['test_opt_specificity']:.1%})
-Actual Positive          {test_opt['test_opt_fn']:<12}         {test_opt['test_opt_tp']:<12}    (Recall: {test_opt['test_opt_recall']:.1%})
-Total Test: 327 | Precision: {test_opt['test_opt_precision']:.1%} | Accuracy: {test_opt['test_opt_accuracy']:.1%}
-```
-
-> [!NOTE]
-> **Small-Sample Sensitivity on Test Set**:  
-> The held-out test partition contains exactly 22 positive instances (`Became_FTL = 1`) out of 327 candidates (6.73% prevalence). Because of this small sample, a shift of just 1 true positive or false positive moves precision or recall by ~4.5 percentage points.
+### Held-Out Test Confusion Matrices:
+- **Default ($\\theta=0.50$):** TN={test_dft['test_th05_tn']}, FP={test_dft['test_th05_fp']}, FN={test_dft['test_th05_fn']}, TP={test_dft['test_th05_tp']} (Precision: {test_dft['test_th05_precision']:.1%}, Recall: {test_dft['test_th05_recall']:.1%})
+- **Optimal ($\\theta^*={opt_th:.2f}$):** TN={test_opt['test_opt_tn']}, FP={test_opt['test_opt_fp']}, FN={test_opt['test_opt_fn']}, TP={test_opt['test_opt_tp']} (Precision: {test_opt['test_opt_precision']:.1%}, Recall: {test_opt['test_opt_recall']:.1%})
 
 ---
 
-## 4. Comparison Against Baseline Tree Ensembles
+## 4. Feature Discriminative Power (Standardized Mean Separation)
 
-| Model / Configuration | Feature Set | Input Dim | Test PR-AUC | Test ROC-AUC | Test F1 @ $\\theta^*$ | Test Brier Score | Calibrated? |
-|:---|:---|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Gaussian Naive Bayes** | 14 Baseline | 31 | **{test_opt['test_opt_pr_auc']:.4f}** | **{test_opt['test_opt_roc_auc']:.4f}** | **{test_opt['test_opt_f1']:.4f}** | **{test_opt['test_opt_brier_score']:.4f}** | Poor (Polarized) |
-| **XGBoost (Run 2 Baseline)** | 14 Baseline | 31 | 0.1903 | 0.8273 | 0.2667 | 0.1363 | Moderate |
-| **XGBoost (Run 4 Custom)** | 14 Baseline + 4 Ratios | 35 | 0.2519 | 0.8596 | 0.2857 | 0.0812 | Excellent |
-
-### Comparative Insights:
-1. **Ranking vs. Calibration**: While GaussianNB produces strong PR-AUC ({test_opt['test_opt_pr_auc']:.4f}) and ROC-AUC ({test_opt['test_opt_roc_auc']:.4f}) by preserving monotonic ordering on dominant features like total quantity and transit hours, its predicted probabilities are poorly calibrated (Brier score of {test_opt['test_opt_brier_score']:.4f}).
-2. **False Positive Burden**: At $\\theta=0.50$, GaussianNB triggers 86 false alarms on the test set, recommending 108 dispatches to capture 22 conversions. In contrast, Custom XGBoost slashed false alarms to 32 while retaining high precision.
-3. **Operational Recommendation**: While GaussianNB demonstrates surprising ranking ability, its inability to model joint non-linear capacity bottlenecks and its distorted posterior probabilities make it unsuited for direct score-based ranking in Phase 10 without Platt scaling or isotonic calibration.
+| Rank | Feature | Standardized Separation ($d$) |
+|:---:|:---|:---:|
+{top_feat_table}
 
 ---
 
 ## 5. Artifact Registry
 
-All generated artifacts adhere to the designated Phase 9 folder structure:
-
-| Artifact Type | Path | Purpose |
-|:---|:---|:---|
-| **Pipeline Script** | `src/phase9/naive_bayes/train.py` | Standalone reproducible training and evaluation pipeline |
-| **Serialized Model** | `models/phase9/naive_bayes/gaussian_nb.joblib` | Fitted `GaussianNB` model object |
-| **Test Predictions** | `reports/phase9/naive_bayes/predictions.csv` | Held-out test predictions with probabilities and decisions |
-| **Val Predictions** | `reports/phase9/naive_bayes/val_predictions.csv` | Validation set predictions with probabilities and decisions |
-| **Structured Metrics** | `reports/phase9/naive_bayes/metrics.json` | Comprehensive machine-readable metrics dictionary |
-| **Confusion Matrix** | `reports/phase9/naive_bayes/figures/confusion_matrix.png` | Normalized and raw confusion matrix plot |
-| **PR Curve Plot** | `reports/phase9/naive_bayes/figures/precision_recall_curve.png` | Precision-Recall curve with baseline prevalence reference |
-| **ROC Curve Plot** | `reports/phase9/naive_bayes/figures/roc_curve.png` | Receiver Operating Characteristic diagnostic plot |
-| **Calibration Plot** | `reports/phase9/naive_bayes/figures/calibration_curve.png` | Reliability diagram demonstrating probability overconfidence |
-
----
-
-## 6. Reproduction Command
-
-To reproduce this experiment from the repository root:
-```bash
-python -m src.phase9.naive_bayes.train
-```
-*(Execution completes in < 2 seconds without retraining or modifying shared artifacts).*
+- **Model Artifact:** `models/phase9/naive_bayes/baseline/model.joblib`
+- **Model Configuration:** `models/phase9/naive_bayes/baseline/config.json`
+- **Predictions (Test):** `reports/phase9/naive_bayes/baseline/predictions.csv`
+- **Validation Predictions:** `reports/phase9/naive_bayes/baseline/val_predictions.csv`
+- **Structured Metrics:** `reports/phase9/naive_bayes/baseline/metrics.json`
+- **Figures:**
+  - `reports/phase9/naive_bayes/baseline/figures/confusion_matrix.png`
+  - `reports/phase9/naive_bayes/baseline/figures/precision_recall_curve.png`
+  - `reports/phase9/naive_bayes/baseline/figures/roc_curve.png`
+  - `reports/phase9/naive_bayes/baseline/figures/calibration_curve.png`
+  - `reports/phase9/naive_bayes/baseline/figures/feature_importance.png`
 """
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(content.strip() + "\n")
-    print(f"Generated report at {output_path}")
+    print(f"Generated baseline report at {output_path}")
 
 
-def run_naive_bayes_training(retrain: bool = False) -> Dict[str, Any]:
-    """Execute Gaussian Naive Bayes training, evaluation, and artifact generation pipeline."""
+def run_baseline_training(retrain: bool = False) -> Dict[str, Any]:
+    """Execute Baseline Gaussian Naive Bayes pipeline."""
     print("=" * 70)
-    print("CARGOSENSE PHASE 9 — GAUSSIAN NAIVE BAYES EXPERIMENT")
+    print("CARGOSENSE PHASE 9 — BASELINE GAUSSIAN NAIVE BAYES EXPERIMENT")
     print("=" * 70)
 
     OUTPUT_MODEL_DIR.mkdir(parents=True, exist_ok=True)
@@ -341,17 +315,10 @@ def run_naive_bayes_training(retrain: bool = False) -> Dict[str, Any]:
     X_train = preprocessor.transform(train_df[BASELINE_ALL_FEATURES])
     X_val = preprocessor.transform(val_df[BASELINE_ALL_FEATURES])
     X_test = preprocessor.transform(test_df[BASELINE_ALL_FEATURES])
+    feature_names = list(preprocessor.get_feature_names_out())
 
-    # 4. Check array validity
-    for X, name in [(X_train, "X_train"), (X_val, "X_val"), (X_test, "X_test")]:
-        nan_count = int(np.isnan(X).sum())
-        inf_count = int(np.isinf(X).sum())
-        if nan_count > 0 or inf_count > 0:
-            raise ValueError(f"Invalid values in {name}: {nan_count} NaNs, {inf_count} Infs")
-    print(f"Transformed matrices validated: dimension = {X_train.shape[1]} features, 0 NaNs, 0 Infs.")
-
-    # 5. Fit or reuse model
-    model_path = OUTPUT_MODEL_DIR / "gaussian_nb.joblib"
+    # 4. Fit or load model
+    model_path = OUTPUT_MODEL_DIR / "model.joblib"
     params = {
         "priors": None,
         "var_smoothing": 1e-9
@@ -361,36 +328,31 @@ def run_naive_bayes_training(retrain: bool = False) -> Dict[str, Any]:
         print(f"Reusing existing trained model from {model_path}")
         model = joblib.load(model_path)
     else:
-        print("Fitting GaussianNB model with default settings...")
+        print("Fitting Baseline GaussianNB model on training split...")
         model = GaussianNB(**params)
         model.fit(X_train, y_train)
         joblib.dump(model, model_path)
-        print(f"Saved trained GaussianNB model to {model_path}")
+        print(f"Saved trained model to {model_path}")
 
-    # Verify class mapping
-    if not np.array_equal(model.classes_, [0, 1]):
-        raise ValueError(f"Unexpected classes_ in GaussianNB: {model.classes_}")
-
-    # 6. Predict probabilities
+    # 5. Predict probabilities
     val_probs = model.predict_proba(X_val)[:, 1]
     test_probs = model.predict_proba(X_test)[:, 1]
 
-    # 7. Select optimal threshold on validation set only
+    # 6. Optimal threshold on validation set
     opt_threshold, opt_f1, _ = find_optimal_threshold(y_val, val_probs, metric="f1")
     print(f"Validation F1-optimized threshold: {opt_threshold:.4f} (Val F1: {opt_f1:.4f})")
 
-    # 8. Compute metrics
+    # 7. Compute metrics
     val_metrics_default = compute_binary_metrics(y_val, val_probs, threshold=0.5, prefix="val_th05")
     val_metrics_opt = compute_binary_metrics(y_val, val_probs, threshold=opt_threshold, prefix="val_opt")
     test_metrics_default = compute_binary_metrics(y_test, test_probs, threshold=0.5, prefix="test_th05")
     test_metrics_opt = compute_binary_metrics(y_test, test_probs, threshold=opt_threshold, prefix="test_opt")
 
-    print(f"\nGaussianNB Validation PR-AUC: {val_metrics_opt['val_opt_pr_auc']:.4f} | ROC-AUC: {val_metrics_opt['val_opt_roc_auc']:.4f}")
-    print(f"GaussianNB Test PR-AUC:       {test_metrics_opt['test_opt_pr_auc']:.4f} | ROC-AUC: {test_metrics_opt['test_opt_roc_auc']:.4f}")
-    print(f"GaussianNB Test (th=0.50):    Precision={test_metrics_default['test_th05_precision']:.4f}, Recall={test_metrics_default['test_th05_recall']:.4f}, F1={test_metrics_default['test_th05_f1']:.4f}")
-    print(f"GaussianNB Test (th={opt_threshold:.2f}):    Precision={test_metrics_opt['test_opt_precision']:.4f}, Recall={test_metrics_opt['test_opt_recall']:.4f}, F1={test_metrics_opt['test_opt_f1']:.4f}")
+    print(f"Baseline Test PR-AUC: {test_metrics_opt['test_opt_pr_auc']:.4f} | ROC-AUC: {test_metrics_opt['test_opt_roc_auc']:.4f}")
+    print(f"Baseline Test (th=0.50): Precision={test_metrics_default['test_th05_precision']:.4f}, Recall={test_metrics_default['test_th05_recall']:.4f}, F1={test_metrics_default['test_th05_f1']:.4f}")
+    print(f"Baseline Test (th={opt_threshold:.2f}): Precision={test_metrics_opt['test_opt_precision']:.4f}, Recall={test_metrics_opt['test_opt_recall']:.4f}, F1={test_metrics_opt['test_opt_f1']:.4f}")
 
-    # 9. Save predictions (with candidate identifier for traceability)
+    # 8. Save predictions
     test_preds_df = test_df[["opportunity_id", "shipment_id", TARGET_COLUMN]].copy()
     test_preds_df["predicted_prob"] = test_probs
     test_preds_df["predicted_class_th05"] = (test_probs >= 0.5).astype(int)
@@ -406,9 +368,28 @@ def run_naive_bayes_training(retrain: bool = False) -> Dict[str, Any]:
     val_preds_path = OUTPUT_REPORT_DIR / "val_predictions.csv"
     val_preds_df.to_csv(val_preds_path, index=False)
 
-    # 10. Save structured metrics JSON
+    # 9. Compute feature importance (standardized class separation)
+    importance_df = compute_gaussian_feature_importance(model, feature_names)
+
+    # 10. Save config
+    config = {
+        "model_name": "Baseline GaussianNB",
+        "feature_set": "14 shared Phase 8 baseline features",
+        "n_features": len(feature_names),
+        "features": feature_names,
+        "hyperparameters": params,
+        "classes": [int(c) for c in model.classes_],
+        "class_prior": [float(p) for p in model.class_prior_],
+        "optimal_threshold": float(opt_threshold)
+    }
+    config_path = OUTPUT_MODEL_DIR / "config.json"
+    with open(config_path, "w", encoding="utf-8") as f:
+        json.dump(config, f, indent=2)
+    print(f"Saved configuration to {config_path}")
+
+    # 11. Save structured metrics JSON
     metrics_summary = {
-        "experiment": "Phase 9: Gaussian Naive Bayes",
+        "experiment": "Phase 9: Baseline Gaussian Naive Bayes",
         "phase": "Phase 9",
         "algorithm": "GaussianNB",
         "feature_set": "14 shared Phase 8 baseline features",
@@ -420,21 +401,22 @@ def run_naive_bayes_training(retrain: bool = False) -> Dict[str, Any]:
         "validation_metrics_default_th": val_metrics_default,
         "validation_metrics_optimal_th": val_metrics_opt,
         "test_metrics_default_th": test_metrics_default,
-        "test_metrics_optimal_th": test_metrics_opt
+        "test_metrics_optimal_th": test_metrics_opt,
+        "top_features": importance_df.head(15).to_dict(orient="records")
     }
     metrics_path = OUTPUT_REPORT_DIR / "metrics.json"
     with open(metrics_path, "w", encoding="utf-8") as f:
         json.dump(metrics_summary, f, indent=2)
     print(f"Saved metrics summary to {metrics_path}")
 
-    # 11. Generate Figures
+    # 12. Generate Figures
     plot_pr_curves(
         {
             "Validation Set": (y_val, val_probs),
             "Held-Out Test Set": (y_test, test_probs)
         },
         OUTPUT_FIGURES_DIR / "precision_recall_curve.png",
-        title="Gaussian Naive Bayes — Precision-Recall Curves"
+        title="Baseline Gaussian Naive Bayes — Precision-Recall Curves"
     )
 
     plot_roc_curves(
@@ -443,7 +425,7 @@ def run_naive_bayes_training(retrain: bool = False) -> Dict[str, Any]:
             "Held-Out Test Set": (y_test, test_probs)
         },
         OUTPUT_FIGURES_DIR / "roc_curve.png",
-        title="Gaussian Naive Bayes — ROC Curves"
+        title="Baseline Gaussian Naive Bayes — ROC Curves"
     )
 
     plot_confusion_matrices(
@@ -457,25 +439,33 @@ def run_naive_bayes_training(retrain: bool = False) -> Dict[str, Any]:
 
     plot_calibration_curves(
         {
-            "Gaussian Naive Bayes (Test)": (y_test, test_probs)
+            "Baseline GaussianNB (Test)": (y_test, test_probs)
         },
         OUTPUT_FIGURES_DIR / "calibration_curve.png"
     )
+
+    plot_feature_importances(
+        feature_names,
+        importance_df["importance"].values,
+        title="Baseline GaussianNB — Feature Discriminative Separation (|d|)",
+        output_path=OUTPUT_FIGURES_DIR / "feature_importance.png",
+        top_n=15
+    )
     print(f"Saved figures to {OUTPUT_FIGURES_DIR}")
 
-    # 12. Generate Markdown Report
+    # 13. Generate Markdown Report
     report_path = OUTPUT_REPORT_DIR / "report.md"
-    generate_naive_bayes_report(metrics_summary, report_path)
+    generate_baseline_report(metrics_summary, importance_df, report_path)
 
     return metrics_summary
 
 
 def main():
-    parser = argparse.ArgumentParser(description="CargoSense Phase 9 — Gaussian Naive Bayes Experiment")
+    parser = argparse.ArgumentParser(description="CargoSense Phase 9 — Baseline Gaussian Naive Bayes")
     parser.add_argument("--retrain", action="store_true", help="Force retrain even if model artifact exists")
     args = parser.parse_args()
 
-    run_naive_bayes_training(retrain=args.retrain)
+    run_baseline_training(retrain=args.retrain)
 
 
 if __name__ == "__main__":

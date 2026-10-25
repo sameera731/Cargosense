@@ -1,0 +1,172 @@
+{
+  "experiment": "Phase 9: Custom Gaussian Naive Bayes",
+  "phase": "Phase 9",
+  "algorithm": "GaussianNB (Custom Optimized)",
+  "selected_configuration": {
+    "model_name": "Custom GaussianNB",
+    "feature_subset": "decorrelated_physical_4",
+    "n_features": 4,
+    "features": [
+      "num__projected_weight_util_pct",
+      "num__candidate_total_qty",
+      "num__candidate_added_weight_kg",
+      "num__n_candidate_skus"
+    ],
+    "feature_description": "4 non-redundant core physical features addressing severe weight/volume multicollinearity",
+    "feature_indices": [
+      4,
+      7,
+      2,
+      6
+    ],
+    "var_smoothing": 0.001,
+    "priors_type": "empirical",
+    "priors": null,
+    "optimal_threshold": 0.9199999999999999,
+    "val_pr_auc": 0.34437,
+    "val_roc_auc": 0.84097,
+    "val_f1_opt": 0.32184,
+    "val_brier_score": 0.29855
+  },
+  "validation_metrics_default_th": {
+    "val_th05_pr_auc": 0.34437,
+    "val_th05_roc_auc": 0.84097,
+    "val_th05_brier_score": 0.29855,
+    "val_th05_threshold": 0.5,
+    "val_th05_precision": 0.13218,
+    "val_th05_recall": 1.0,
+    "val_th05_f1": 0.2335,
+    "val_th05_accuracy": 0.5296,
+    "val_th05_specificity": 0.49329,
+    "val_th05_tp": 23,
+    "val_th05_fp": 151,
+    "val_th05_tn": 147,
+    "val_th05_fn": 0,
+    "val_th05_confusion_matrix": [
+      [
+        147,
+        151
+      ],
+      [
+        0,
+        23
+      ]
+    ],
+    "val_th05_total_samples": 321,
+    "val_th05_positive_samples": 23,
+    "val_th05_positive_rate": 0.07165
+  },
+  "validation_metrics_optimal_th": {
+    "val_opt_pr_auc": 0.34437,
+    "val_opt_roc_auc": 0.84097,
+    "val_opt_brier_score": 0.29855,
+    "val_opt_threshold": 0.92,
+    "val_opt_precision": 0.21875,
+    "val_opt_recall": 0.6087,
+    "val_opt_f1": 0.32184,
+    "val_opt_accuracy": 0.8162,
+    "val_opt_specificity": 0.83221,
+    "val_opt_tp": 14,
+    "val_opt_fp": 50,
+    "val_opt_tn": 248,
+    "val_opt_fn": 9,
+    "val_opt_confusion_matrix": [
+      [
+        248,
+        50
+      ],
+      [
+        9,
+        14
+      ]
+    ],
+    "val_opt_total_samples": 321,
+    "val_opt_positive_samples": 23,
+    "val_opt_positive_rate": 0.07165
+  },
+  "test_metrics_default_th": {
+    "test_th05_pr_auc": 0.15367,
+    "test_th05_roc_auc": 0.79478,
+    "test_th05_brier_score": 0.28612,
+    "test_th05_threshold": 0.5,
+    "test_th05_precision": 0.13174,
+    "test_th05_recall": 1.0,
+    "test_th05_f1": 0.2328,
+    "test_th05_accuracy": 0.55657,
+    "test_th05_specificity": 0.52459,
+    "test_th05_tp": 22,
+    "test_th05_fp": 145,
+    "test_th05_tn": 160,
+    "test_th05_fn": 0,
+    "test_th05_confusion_matrix": [
+      [
+        160,
+        145
+      ],
+      [
+        0,
+        22
+      ]
+    ],
+    "test_th05_total_samples": 327,
+    "test_th05_positive_samples": 22,
+    "test_th05_positive_rate": 0.06728
+  },
+  "test_metrics_optimal_th": {
+    "test_opt_pr_auc": 0.15367,
+    "test_opt_roc_auc": 0.79478,
+    "test_opt_brier_score": 0.28612,
+    "test_opt_threshold": 0.92,
+    "test_opt_precision": 0.16327,
+    "test_opt_recall": 0.36364,
+    "test_opt_f1": 0.22535,
+    "test_opt_accuracy": 0.8318,
+    "test_opt_specificity": 0.86557,
+    "test_opt_tp": 8,
+    "test_opt_fp": 41,
+    "test_opt_tn": 264,
+    "test_opt_fn": 14,
+    "test_opt_confusion_matrix": [
+      [
+        264,
+        41
+      ],
+      [
+        14,
+        8
+      ]
+    ],
+    "test_opt_total_samples": 327,
+    "test_opt_positive_samples": 22,
+    "test_opt_positive_rate": 0.06728
+  },
+  "baseline_comparison": {
+    "baseline_test_pr_auc": 0.27382,
+    "custom_test_pr_auc": 0.15367,
+    "delta_test_pr_auc": -0.12015,
+    "baseline_test_f1_opt": 0.33071,
+    "custom_test_f1_opt": 0.22535,
+    "delta_test_f1": -0.10536,
+    "baseline_test_fp_opt": 84,
+    "custom_test_fp_opt": 41,
+    "reduction_in_fp": 43
+  },
+  "top_features": [
+    {
+      "feature": "num__projected_weight_util_pct",
+      "importance": 1.0727485476689111
+    },
+    {
+      "feature": "num__candidate_total_qty",
+      "importance": 0.4620899676041335
+    },
+    {
+      "feature": "num__candidate_added_weight_kg",
+      "importance": 0.4084599780418606
+    },
+    {
+      "feature": "num__n_candidate_skus",
+      "importance": 0.3633821522359244
+    }
+  ]
+}
