@@ -1,0 +1,195 @@
+{
+  "experiment": "Run 2: Baseline XGBoost",
+  "phase": "Phase 9",
+  "owner": "Member 2",
+  "feature_set": "14 shared Phase 8 baseline features",
+  "preprocessor_source": "models/phase8_preprocessor.joblib",
+  "hyperparameters": {
+    "n_estimators": 21,
+    "max_depth": 4,
+    "learning_rate": 0.08,
+    "subsample": 0.9,
+    "colsample_bytree": 0.9,
+    "min_child_weight": 1,
+    "reg_lambda": 3.0,
+    "objective": "binary:logistic",
+    "eval_metric": "aucpr",
+    "scale_pos_weight": 9.872340425531915,
+    "random_state": 42
+  },
+  "optimal_threshold": 0.6399999999999999,
+  "validation_metrics_default_th": {
+    "val_th05_pr_auc": 0.33295,
+    "val_th05_roc_auc": 0.87752,
+    "val_th05_brier_score": 0.12999,
+    "val_th05_threshold": 0.5,
+    "val_th05_precision": 0.21905,
+    "val_th05_recall": 1.0,
+    "val_th05_f1": 0.35938,
+    "val_th05_accuracy": 0.74455,
+    "val_th05_specificity": 0.72483,
+    "val_th05_tp": 23,
+    "val_th05_fp": 82,
+    "val_th05_tn": 216,
+    "val_th05_fn": 0,
+    "val_th05_confusion_matrix": [
+      [
+        216,
+        82
+      ],
+      [
+        0,
+        23
+      ]
+    ],
+    "val_th05_total_samples": 321,
+    "val_th05_positive_samples": 23,
+    "val_th05_positive_rate": 0.07165
+  },
+  "validation_metrics_optimal_th": {
+    "val_opt_pr_auc": 0.33295,
+    "val_opt_roc_auc": 0.87752,
+    "val_opt_brier_score": 0.12999,
+    "val_opt_threshold": 0.64,
+    "val_opt_precision": 0.23457,
+    "val_opt_recall": 0.82609,
+    "val_opt_f1": 0.36538,
+    "val_opt_accuracy": 0.79439,
+    "val_opt_specificity": 0.79195,
+    "val_opt_tp": 19,
+    "val_opt_fp": 62,
+    "val_opt_tn": 236,
+    "val_opt_fn": 4,
+    "val_opt_confusion_matrix": [
+      [
+        236,
+        62
+      ],
+      [
+        4,
+        19
+      ]
+    ],
+    "val_opt_total_samples": 321,
+    "val_opt_positive_samples": 23,
+    "val_opt_positive_rate": 0.07165
+  },
+  "test_metrics_default_th": {
+    "test_th05_pr_auc": 0.19032,
+    "test_th05_roc_auc": 0.82727,
+    "test_th05_brier_score": 0.13631,
+    "test_th05_threshold": 0.5,
+    "test_th05_precision": 0.20183,
+    "test_th05_recall": 1.0,
+    "test_th05_f1": 0.33588,
+    "test_th05_accuracy": 0.73394,
+    "test_th05_specificity": 0.71475,
+    "test_th05_tp": 22,
+    "test_th05_fp": 87,
+    "test_th05_tn": 218,
+    "test_th05_fn": 0,
+    "test_th05_confusion_matrix": [
+      [
+        218,
+        87
+      ],
+      [
+        0,
+        22
+      ]
+    ],
+    "test_th05_total_samples": 327,
+    "test_th05_positive_samples": 22,
+    "test_th05_positive_rate": 0.06728
+  },
+  "test_metrics_optimal_th": {
+    "test_opt_pr_auc": 0.19032,
+    "test_opt_roc_auc": 0.82727,
+    "test_opt_brier_score": 0.13631,
+    "test_opt_threshold": 0.64,
+    "test_opt_precision": 0.16867,
+    "test_opt_recall": 0.63636,
+    "test_opt_f1": 0.26667,
+    "test_opt_accuracy": 0.76453,
+    "test_opt_specificity": 0.77377,
+    "test_opt_tp": 14,
+    "test_opt_fp": 69,
+    "test_opt_tn": 236,
+    "test_opt_fn": 8,
+    "test_opt_confusion_matrix": [
+      [
+        236,
+        69
+      ],
+      [
+        8,
+        14
+      ]
+    ],
+    "test_opt_total_samples": 327,
+    "test_opt_positive_samples": 22,
+    "test_opt_positive_rate": 0.06728
+  },
+  "top_features": [
+    {
+      "feature": "num__candidate_total_qty",
+      "importance": 0.332542359828949
+    },
+    {
+      "feature": "num__projected_weight_util_pct",
+      "importance": 0.22221775352954865
+    },
+    {
+      "feature": "num__candidate_added_weight_kg",
+      "importance": 0.14345376193523407
+    },
+    {
+      "feature": "num__projected_volume_util_pct",
+      "importance": 0.12389123439788818
+    },
+    {
+      "feature": "num__remaining_capacity_m3",
+      "importance": 0.02808714285492897
+    },
+    {
+      "feature": "num__candidate_added_volume_m3",
+      "importance": 0.023120619356632233
+    },
+    {
+      "feature": "num__mean_demand_last_7d_route",
+      "importance": 0.021238364279270172
+    },
+    {
+      "feature": "cat__truck_type_20ft ICV",
+      "importance": 0.02014145255088806
+    },
+    {
+      "feature": "cat__route_id_RT-MUM-HYD",
+      "importance": 0.019844919443130493
+    },
+    {
+      "feature": "num__days_into_simulation",
+      "importance": 0.018368633463978767
+    },
+    {
+      "feature": "cat__day_of_week_0",
+      "importance": 0.017596175894141197
+    },
+    {
+      "feature": "num__n_candidate_skus",
+      "importance": 0.016681594774127007
+    },
+    {
+      "feature": "cat__day_of_week_3",
+      "importance": 0.012815948575735092
+    },
+    {
+      "feature": "num__route_transit_hours",
+      "importance": 0.0
+    },
+    {
+      "feature": "num__remaining_capacity_kg",
+      "importance": 0.0
+    }
+  ]
+}
