@@ -1,0 +1,224 @@
+{
+  "experiment": "Run 5: Baseline AdaBoost",
+  "phase": "Phase 9",
+  "owner": "Adaptive Boosting Lead",
+  "feature_set": "14 shared Phase 8 baseline features",
+  "feature_count": 31,
+  "final_feature_names": [
+    "num__remaining_capacity_kg",
+    "num__remaining_capacity_m3",
+    "num__candidate_added_weight_kg",
+    "num__candidate_added_volume_m3",
+    "num__projected_weight_util_pct",
+    "num__projected_volume_util_pct",
+    "num__n_candidate_skus",
+    "num__candidate_total_qty",
+    "num__mean_demand_last_7d_route",
+    "num__route_transit_hours",
+    "num__days_into_simulation",
+    "cat__truck_type_14ft LCV",
+    "cat__truck_type_20ft ICV",
+    "cat__truck_type_24ft MCV",
+    "cat__route_id_RT-MUM-AMD",
+    "cat__route_id_RT-MUM-BLR",
+    "cat__route_id_RT-MUM-BRD",
+    "cat__route_id_RT-MUM-GOA",
+    "cat__route_id_RT-MUM-HYD",
+    "cat__route_id_RT-MUM-IND",
+    "cat__route_id_RT-MUM-NAG",
+    "cat__route_id_RT-MUM-NSK",
+    "cat__route_id_RT-MUM-PUN",
+    "cat__route_id_RT-MUM-SUR",
+    "cat__day_of_week_0",
+    "cat__day_of_week_1",
+    "cat__day_of_week_2",
+    "cat__day_of_week_3",
+    "cat__day_of_week_4",
+    "cat__day_of_week_5",
+    "cat__day_of_week_6"
+  ],
+  "preprocessor_source": "models/phase8_preprocessor.joblib",
+  "hyperparameters": {
+    "estimator": "DecisionTreeClassifier(max_depth=3, random_state=42)",
+    "base_depth": 3,
+    "n_estimators": 50,
+    "learning_rate": 1.0,
+    "sample_weight": "balanced",
+    "random_state": 42
+  },
+  "optimal_threshold": 0.4499999999999999,
+  "validation_metrics_default_th": {
+    "val_th05_pr_auc": 0.31929,
+    "val_th05_roc_auc": 0.87263,
+    "val_th05_brier_score": 0.10912,
+    "val_th05_threshold": 0.5,
+    "val_th05_precision": 0.3,
+    "val_th05_recall": 0.13043,
+    "val_th05_f1": 0.18182,
+    "val_th05_accuracy": 0.91589,
+    "val_th05_specificity": 0.97651,
+    "val_th05_tp": 3,
+    "val_th05_fp": 7,
+    "val_th05_tn": 291,
+    "val_th05_fn": 20,
+    "val_th05_confusion_matrix": [
+      [
+        291,
+        7
+      ],
+      [
+        20,
+        3
+      ]
+    ],
+    "val_th05_total_samples": 321,
+    "val_th05_positive_samples": 23,
+    "val_th05_positive_rate": 0.07165
+  },
+  "validation_metrics_optimal_th": {
+    "val_opt_pr_auc": 0.31929,
+    "val_opt_roc_auc": 0.87263,
+    "val_opt_brier_score": 0.10912,
+    "val_opt_threshold": 0.45,
+    "val_opt_precision": 0.25,
+    "val_opt_recall": 0.65217,
+    "val_opt_f1": 0.36145,
+    "val_opt_accuracy": 0.83489,
+    "val_opt_specificity": 0.84899,
+    "val_opt_tp": 15,
+    "val_opt_fp": 45,
+    "val_opt_tn": 253,
+    "val_opt_fn": 8,
+    "val_opt_confusion_matrix": [
+      [
+        253,
+        45
+      ],
+      [
+        8,
+        15
+      ]
+    ],
+    "val_opt_total_samples": 321,
+    "val_opt_positive_samples": 23,
+    "val_opt_positive_rate": 0.07165
+  },
+  "test_metrics_default_th": {
+    "test_th05_pr_auc": 0.26388,
+    "test_th05_roc_auc": 0.86453,
+    "test_th05_brier_score": 0.109,
+    "test_th05_threshold": 0.5,
+    "test_th05_precision": 0.1875,
+    "test_th05_recall": 0.13636,
+    "test_th05_f1": 0.15789,
+    "test_th05_accuracy": 0.90214,
+    "test_th05_specificity": 0.95738,
+    "test_th05_tp": 3,
+    "test_th05_fp": 13,
+    "test_th05_tn": 292,
+    "test_th05_fn": 19,
+    "test_th05_confusion_matrix": [
+      [
+        292,
+        13
+      ],
+      [
+        19,
+        3
+      ]
+    ],
+    "test_th05_total_samples": 327,
+    "test_th05_positive_samples": 22,
+    "test_th05_positive_rate": 0.06728
+  },
+  "test_metrics_optimal_th": {
+    "test_opt_pr_auc": 0.26388,
+    "test_opt_roc_auc": 0.86453,
+    "test_opt_brier_score": 0.109,
+    "test_opt_threshold": 0.45,
+    "test_opt_precision": 0.2,
+    "test_opt_recall": 0.5,
+    "test_opt_f1": 0.28571,
+    "test_opt_accuracy": 0.8318,
+    "test_opt_specificity": 0.85574,
+    "test_opt_tp": 11,
+    "test_opt_fp": 44,
+    "test_opt_tn": 261,
+    "test_opt_fn": 11,
+    "test_opt_confusion_matrix": [
+      [
+        261,
+        44
+      ],
+      [
+        11,
+        11
+      ]
+    ],
+    "test_opt_total_samples": 327,
+    "test_opt_positive_samples": 22,
+    "test_opt_positive_rate": 0.06728
+  },
+  "top_features": [
+    {
+      "feature": "num__candidate_total_qty",
+      "importance": 0.22756705436462935
+    },
+    {
+      "feature": "num__projected_volume_util_pct",
+      "importance": 0.2002077607262341
+    },
+    {
+      "feature": "num__projected_weight_util_pct",
+      "importance": 0.1439137998074657
+    },
+    {
+      "feature": "num__days_into_simulation",
+      "importance": 0.07442067077472557
+    },
+    {
+      "feature": "num__candidate_added_weight_kg",
+      "importance": 0.06774135124692157
+    },
+    {
+      "feature": "num__mean_demand_last_7d_route",
+      "importance": 0.059111951752750046
+    },
+    {
+      "feature": "num__candidate_added_volume_m3",
+      "importance": 0.057506794694105065
+    },
+    {
+      "feature": "num__remaining_capacity_m3",
+      "importance": 0.051690742207164395
+    },
+    {
+      "feature": "num__remaining_capacity_kg",
+      "importance": 0.03844946596946006
+    },
+    {
+      "feature": "cat__day_of_week_6",
+      "importance": 0.025443985848652966
+    },
+    {
+      "feature": "num__n_candidate_skus",
+      "importance": 0.0112200870950093
+    },
+    {
+      "feature": "cat__day_of_week_5",
+      "importance": 0.010021960439930153
+    },
+    {
+      "feature": "cat__route_id_RT-MUM-PUN",
+      "importance": 0.008073807989957365
+    },
+    {
+      "feature": "cat__day_of_week_4",
+      "importance": 0.007403856113589459
+    },
+    {
+      "feature": "cat__day_of_week_1",
+      "importance": 0.004186298276715139
+    }
+  ]
+}
